@@ -36,7 +36,10 @@ class Livre
     private ?float $prix = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $isbn = null;                         
+    private ?string $isbn = null;
+
+    #[ORM\ManyToOne(inversedBy: 'livres')]
+    private ?Categories $cat = null;                         
 
     public function getId(): ?int
     {
@@ -135,6 +138,18 @@ class Livre
     public function setIsbn(string $isbn): static
     {
         $this->isbn = $isbn;
+
+        return $this;
+    }
+
+    public function getCat(): ?Categories
+    {
+        return $this->cat;
+    }
+
+    public function setCat(?Categories $cat): static
+    {
+        $this->cat = $cat;
 
         return $this;
     }

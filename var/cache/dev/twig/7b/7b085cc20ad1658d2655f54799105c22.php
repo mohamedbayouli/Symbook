@@ -100,12 +100,18 @@ class __TwigTemplate_3fcfd9f889462e3d4ac64fd8c8c5dd5b extends Template
         yield "<div class=\"container d-flex justify-content-center align-items-center min-vh-100\">
     <div class=\"card shadow-lg p-4\" style=\"width: 100%; max-width: 500px;\">
         <h2 class=\"text-center mb-4\">Créer un compte</h2>
-        <form action=\"../../controlleur/user/newacc.php\" method=\"post\" id=\"signup\" novalidate>
+        <form action=\"";
+        // line 9
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_inscription_psw");
+        yield "\" method=\"post\" id=\"signup\" novalidate>
             <div class=\"mb-3\">
                 <label for=\"name\" class=\"form-label\">Nom</label>
                 <input type=\"text\" class=\"form-control\" id=\"name\" name=\"name\" placeholder=\"Entrer votre nom\">
             </div>
-
+            <div class=\"mb-3\">
+                <label for=\"prenom\" class=\"form-label\">Prenom</label>
+                <input type=\"text\" class=\"form-control\" id=\"prenom\" name=\"prenom\" placeholder=\"Entrer votre prenom\">
+            </div>
             <div class=\"mb-3\">
                 <label for=\"email\" class=\"form-label\">Email</label>
                 <input type=\"email\" class=\"form-control\" id=\"email\" name=\"email\" placeholder=\"Entrer votre email\">
@@ -117,11 +123,27 @@ class __TwigTemplate_3fcfd9f889462e3d4ac64fd8c8c5dd5b extends Template
             </div>
 
             <div class=\"mb-3\">
-                <label for=\"password\" class=\"form-label\">Mot de passe</label> 
+                <label for=\"password\" class=\"form-label\">Mot de passe</label> <br>
+";
+        // line 30
+        if (((isset($context["etat"]) || array_key_exists("etat", $context) ? $context["etat"] : (function () { throw new RuntimeError('Variable "etat" does not exist.', 30, $this->source); })()) == 1)) {
+            // line 31
+            yield "               
 <p class=\"text-danger\">
-                (*)le mot doit contenir au moins 8 caractères et un chiffre.
-            
-
+            ";
+        }
+        // line 33
+        yield "                
+            (*)le mot doit contenir au moins 8 caractères et un chiffre.
+      ";
+        // line 35
+        if (((isset($context["etat"]) || array_key_exists("etat", $context) ? $context["etat"] : (function () { throw new RuntimeError('Variable "etat" does not exist.', 35, $this->source); })()) == 1)) {
+            // line 36
+            yield "      </p>       
+      ";
+        }
+        // line 38
+        yield "
             <input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" placeholder=\"Entrer votre mot de passe\">
             </div>
 
@@ -129,9 +151,15 @@ class __TwigTemplate_3fcfd9f889462e3d4ac64fd8c8c5dd5b extends Template
                 <label for=\"password_confirmation\" class=\"form-label\">Répéter le mot de passe</label>
                 <input type=\"password\" class=\"form-control\" id=\"password_confirmation\" name=\"password_confirmation\" placeholder=\"Répéter votre mot de passe\">
             </div>
-            
+       ";
+        // line 46
+        if (((isset($context["etat"]) || array_key_exists("etat", $context) ? $context["etat"] : (function () { throw new RuntimeError('Variable "etat" does not exist.', 46, $this->source); })()) == 2)) {
+            yield "     
 <p class=\"text-danger\">Les deux mots de passe ne sont pas identiques.</p>
-            <button type=\"submit\" class=\"btn btn-primary w-100\" name='ok'>s'inscrire</button>
+";
+        }
+        // line 49
+        yield "            <button type=\"submit\" class=\"btn btn-primary w-100\" name='ok'>s'inscrire</button>
         </form>
     </div>
 </div>
@@ -166,7 +194,7 @@ class __TwigTemplate_3fcfd9f889462e3d4ac64fd8c8c5dd5b extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  162 => 49,  156 => 46,  146 => 38,  142 => 36,  140 => 35,  136 => 33,  131 => 31,  129 => 30,  105 => 9,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -179,12 +207,15 @@ class __TwigTemplate_3fcfd9f889462e3d4ac64fd8c8c5dd5b extends Template
 <div class=\"container d-flex justify-content-center align-items-center min-vh-100\">
     <div class=\"card shadow-lg p-4\" style=\"width: 100%; max-width: 500px;\">
         <h2 class=\"text-center mb-4\">Créer un compte</h2>
-        <form action=\"../../controlleur/user/newacc.php\" method=\"post\" id=\"signup\" novalidate>
+        <form action=\"{{ path ('app_inscription_psw')}}\" method=\"post\" id=\"signup\" novalidate>
             <div class=\"mb-3\">
                 <label for=\"name\" class=\"form-label\">Nom</label>
                 <input type=\"text\" class=\"form-control\" id=\"name\" name=\"name\" placeholder=\"Entrer votre nom\">
             </div>
-
+            <div class=\"mb-3\">
+                <label for=\"prenom\" class=\"form-label\">Prenom</label>
+                <input type=\"text\" class=\"form-control\" id=\"prenom\" name=\"prenom\" placeholder=\"Entrer votre prenom\">
+            </div>
             <div class=\"mb-3\">
                 <label for=\"email\" class=\"form-label\">Email</label>
                 <input type=\"email\" class=\"form-control\" id=\"email\" name=\"email\" placeholder=\"Entrer votre email\">
@@ -196,10 +227,15 @@ class __TwigTemplate_3fcfd9f889462e3d4ac64fd8c8c5dd5b extends Template
             </div>
 
             <div class=\"mb-3\">
-                <label for=\"password\" class=\"form-label\">Mot de passe</label> 
+                <label for=\"password\" class=\"form-label\">Mot de passe</label> <br>
+{% if etat == 1 %}
+               
 <p class=\"text-danger\">
-                (*)le mot doit contenir au moins 8 caractères et un chiffre.
-            
+            {% endif %}                
+            (*)le mot doit contenir au moins 8 caractères et un chiffre.
+      {% if etat == 1 %}
+      </p>       
+      {% endif %}
 
             <input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" placeholder=\"Entrer votre mot de passe\">
             </div>
@@ -208,8 +244,9 @@ class __TwigTemplate_3fcfd9f889462e3d4ac64fd8c8c5dd5b extends Template
                 <label for=\"password_confirmation\" class=\"form-label\">Répéter le mot de passe</label>
                 <input type=\"password\" class=\"form-control\" id=\"password_confirmation\" name=\"password_confirmation\" placeholder=\"Répéter votre mot de passe\">
             </div>
-            
+       {% if etat == 2 %}     
 <p class=\"text-danger\">Les deux mots de passe ne sont pas identiques.</p>
+{% endif %}
             <button type=\"submit\" class=\"btn btn-primary w-100\" name='ok'>s'inscrire</button>
         </form>
     </div>

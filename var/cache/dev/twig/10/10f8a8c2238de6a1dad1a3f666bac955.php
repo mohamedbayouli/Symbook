@@ -57,54 +57,83 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
         // line 5
         yield from $this->unwrap()->yieldBlock('title', $context, $blocks);
         yield "</title>
+       <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\">
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>\">
         <link rel=\"stylesheet\" href=\"";
-        // line 7
+        // line 8
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("bootstrap.min.css"), "html", null, true);
         yield "\">
         ";
-        // line 8
+        // line 9
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 10
+        // line 11
         yield "
         ";
-        // line 11
+        // line 12
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 14
+        // line 15
         yield "    </head>
     <body>
-  <nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
+  <nav class=\"navbar navbar-expand-lg bg-dark\" data-bs-theme=\"dark\">
   <div class=\"container-fluid\">
+    <span class=\"fas fa-book-open text-light me-2\"></span>
     <a class=\"navbar-brand\" href=\"#\">Symbook</a>
-    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor02\" aria-controls=\"navbarColor02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
       <span class=\"navbar-toggler-icon\"></span>
     </button>
-    <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
+    <div class=\"collapse navbar-collapse\" id=\"navbarColor02\">
       <ul class=\"navbar-nav me-auto\">
         <li class=\"nav-item\">
-          <a class=\"nav-link active\" href=\"#\">Acceuil
-            <span class=\"visually-hidden\">(current)</span>
+          <a class=\"nav-link  \" href=\"#\">
+            <i class=\"fas fa-home me-1 \"></i>Accueil
+            
           </a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Nos livres</a>
+          <a class=\"nav-link\" href=\"\">
+            <i class=\"fas fa-book me-1\"></i>Nos livres
+          </a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">nos Categories</a>
+          <a class=\"nav-link\" href=\"#\">
+            <i class=\"fas fa-tags me-1\"></i>Nos catégories
+          </a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Contactez-nous</a>
+          <a class=\"nav-link\" href=\"#\">
+            <i class=\"fas fa-info-circle me-1\"></i>À propos
+          </a>
+        </li>
+      </ul>
+      <ul class=\"navbar-nav\">
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"#\">
+            <i class=\"fas fa-sign-in-alt me-1\"></i>Connexion
+          </a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"";
+        // line 55
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
+        yield "\">
+            <i class=\"fas fa-user-plus me-1\"></i>Inscription
+          </a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"#\">
+            <i class=\"fas fa-sign-out-alt me-1\"></i>Déconnexion
+          </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-     <div class=\"container mt-3\">
+     
         ";
-        // line 43
+        // line 69
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 46
-        yield "        </div>
+        // line 72
+        yield "       
     </body>
 </html>
 ";
@@ -140,7 +169,7 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
         yield from [];
     }
 
-    // line 8
+    // line 9
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -153,7 +182,7 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        // line 9
+        // line 10
         yield "        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -164,7 +193,7 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
         yield from [];
     }
 
-    // line 11
+    // line 12
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -177,7 +206,7 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 12
+        // line 13
         yield "
         ";
         
@@ -189,7 +218,7 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
         yield from [];
     }
 
-    // line 43
+    // line 69
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -202,7 +231,7 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 44
+        // line 70
         yield "       
         ";
         
@@ -235,7 +264,7 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  206 => 44,  193 => 43,  181 => 12,  168 => 11,  157 => 9,  144 => 8,  121 => 5,  107 => 46,  105 => 43,  74 => 14,  72 => 11,  69 => 10,  67 => 8,  63 => 7,  58 => 5,  52 => 1,);
+        return array (  235 => 70,  222 => 69,  210 => 13,  197 => 12,  186 => 10,  173 => 9,  150 => 5,  136 => 72,  134 => 69,  117 => 55,  75 => 15,  73 => 12,  70 => 11,  68 => 9,  64 => 8,  58 => 5,  52 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -245,6 +274,7 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
     <head>
         <meta charset=\"UTF-8\">
         <title>{% block title %}Welcome!{% endblock %}</title>
+       <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\">
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>\">
         <link rel=\"stylesheet\" href=\"{{asset('bootstrap.min.css')}}\">
         {% block stylesheets %}
@@ -255,37 +285,62 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
         {% endblock %}
     </head>
     <body>
-  <nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
+  <nav class=\"navbar navbar-expand-lg bg-dark\" data-bs-theme=\"dark\">
   <div class=\"container-fluid\">
+    <span class=\"fas fa-book-open text-light me-2\"></span>
     <a class=\"navbar-brand\" href=\"#\">Symbook</a>
-    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor02\" aria-controls=\"navbarColor02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
       <span class=\"navbar-toggler-icon\"></span>
     </button>
-    <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
+    <div class=\"collapse navbar-collapse\" id=\"navbarColor02\">
       <ul class=\"navbar-nav me-auto\">
         <li class=\"nav-item\">
-          <a class=\"nav-link active\" href=\"#\">Acceuil
-            <span class=\"visually-hidden\">(current)</span>
+          <a class=\"nav-link  \" href=\"#\">
+            <i class=\"fas fa-home me-1 \"></i>Accueil
+            
           </a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Nos livres</a>
+          <a class=\"nav-link\" href=\"\">
+            <i class=\"fas fa-book me-1\"></i>Nos livres
+          </a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">nos Categories</a>
+          <a class=\"nav-link\" href=\"#\">
+            <i class=\"fas fa-tags me-1\"></i>Nos catégories
+          </a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Contactez-nous</a>
+          <a class=\"nav-link\" href=\"#\">
+            <i class=\"fas fa-info-circle me-1\"></i>À propos
+          </a>
+        </li>
+      </ul>
+      <ul class=\"navbar-nav\">
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"#\">
+            <i class=\"fas fa-sign-in-alt me-1\"></i>Connexion
+          </a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"{{ path('app_register') }}\">
+            <i class=\"fas fa-user-plus me-1\"></i>Inscription
+          </a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"#\">
+            <i class=\"fas fa-sign-out-alt me-1\"></i>Déconnexion
+          </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-     <div class=\"container mt-3\">
+     
         {% block body %}
        
         {% endblock %}
-        </div>
+       
     </body>
 </html>
 ", "base.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\base.html.twig");

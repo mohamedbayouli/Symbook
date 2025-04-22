@@ -15,12 +15,16 @@ return [
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
+        '/admin/categories' => [[['_route' => 'admin_categories', '_controller' => 'App\\Controller\\CategoriesController::index'], null, null, null, false, false, null]],
+        '/admin/categories/create' => [[['_route' => 'admin_categories_create', '_controller' => 'App\\Controller\\CategoriesController::create'], null, null, null, false, false, null]],
+        '/admin/categories/edit' => [[['_route' => 'admin_categories_edit', '_controller' => 'App\\Controller\\CategoriesController::edit'], null, null, null, false, false, null]],
         '/gamme' => [[['_route' => 'app_gamme', '_controller' => 'App\\Controller\\GammeController::index'], null, null, null, false, false, null]],
-        '/inscription' => [[['_route' => 'app_inscription', '_controller' => 'App\\Controller\\InscriptionController::index'], null, null, null, false, false, null]],
         '/admin/livres' => [[['_route' => 'app_livre_all', '_controller' => 'App\\Controller\\LivreController::all'], null, null, null, false, false, null]],
         '/admin/livre/show2' => [[['_route' => 'app_livre_show2', '_controller' => 'App\\Controller\\LivreController::show2'], null, null, null, false, false, null]],
         '/admin/livre/show3' => [[['_route' => 'app_livre_show3', '_controller' => 'App\\Controller\\LivreController::show3'], null, null, null, false, false, null]],
         '/admin/livre' => [[['_route' => 'app_livre_create', '_controller' => 'App\\Controller\\LivreController::create'], null, null, null, false, false, null]],
+        '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
+        '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

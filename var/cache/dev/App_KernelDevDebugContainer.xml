@@ -27,6 +27,7 @@
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
       <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
       <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle">SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -84,6 +85,10 @@
       <parameter key="KnpPaginatorBundle" type="collection">
         <parameter key="path">C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle</parameter>
         <parameter key="namespace">Knp\Bundle\PaginatorBundle</parameter>
+      </parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle" type="collection">
+        <parameter key="path">C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src</parameter>
+        <parameter key="namespace">SymfonyCasts\Bundle\VerifyEmail</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -229,6 +234,7 @@
     <parameter key="env(VAR_DUMPER_SERVER)">127.0.0.1:9912</parameter>
     <parameter key="twig.form.resources" type="collection">
       <parameter>form_div_layout.html.twig</parameter>
+      <parameter>bootstrap_5_layout.html.twig</parameter>
     </parameter>
     <parameter key="twig.default_path">C:\xampp\htdocs\symphonie 2025\tp3\tp3/templates</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
@@ -381,6 +387,13 @@
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\ArticleController"/>
       </call>
     </service>
+    <service id="App\Controller\CategoriesController" class="App\Controller\CategoriesController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\CategoriesController"/>
+      </call>
+    </service>
     <service id="App\Controller\GammeController" class="App\Controller\GammeController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -388,18 +401,19 @@
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\GammeController"/>
       </call>
     </service>
-    <service id="App\Controller\InscriptionController" class="App\Controller\InscriptionController" public="true" autowire="true" autoconfigure="true">
-      <tag name="controller.service_arguments"/>
-      <tag name="container.service_subscriber"/>
-      <call method="setContainer">
-        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\InscriptionController"/>
-      </call>
-    </service>
     <service id="App\Controller\LivreController" class="App\Controller\LivreController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\LivreController"/>
+      </call>
+    </service>
+    <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Security\EmailVerifier"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\RegistrationController"/>
       </call>
     </service>
     <service id="App\Controller\TestController" class="App\Controller\TestController" public="true" autowire="true" autoconfigure="true">
@@ -415,9 +429,28 @@
     <service id="App\DataFixtures\Livresfixtures" class="App\DataFixtures\Livresfixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
     </service>
+    <service id="App\Form\CategorieType" class="App\Form\CategorieType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Repository\CategoriesRepository" class="App\Repository\CategoriesRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\LivreRepository" class="App\Repository\LivreRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Security\EmailVerifier" class="App\Security\EmailVerifier" autowire="true" autoconfigure="true">
+      <argument type="service" id="symfonycasts.verify_email.helper"/>
+      <argument type="service" id="mailer.mailer"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory"/>
     <service id="argument_resolver.backed_enum_resolver" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\BackedEnumValueResolver">
@@ -447,7 +480,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.hHuFWdb"/>
+      <argument type="service" id=".service_locator.ex.WkCn"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1274,6 +1307,7 @@
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations</argument>
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations</argument>
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations</argument>
+        <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\twig-bridge/Resources/views/Email</argument>
@@ -1301,6 +1335,7 @@
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations</argument>
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations</argument>
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations</argument>
+        <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\twig-bridge/Resources/views/Email</argument>
@@ -1393,9 +1428,12 @@
       <argument type="service" id="form.registry"/>
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\Core\Type</argument>
+        <argument>App\Form</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\CategorieType</argument>
+        <argument>App\Form\RegistrationFormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -2135,6 +2173,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.ar.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.ar.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ar.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ar.xlf</argument>
           </argument>
           <argument key="az" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.az.xlf</argument>
@@ -2162,12 +2201,14 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.ca.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.ca.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ca.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ca.xlf</argument>
           </argument>
           <argument key="cs" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.cs.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.cs.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.cs.xlf</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.cy.xlf</argument>
@@ -2179,29 +2220,34 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.da.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.da.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.da.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.da.xlf</argument>
           </argument>
           <argument key="de" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.de.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.de.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.de.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.de.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.de.xlf</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.el.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.el.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.el.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.el.xlf</argument>
           </argument>
           <argument key="en" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.en.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.en.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.en.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.en.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.en.xlf</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.es.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.es.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.es.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.es.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.es.xlf</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.et.xlf</argument>
@@ -2219,18 +2265,21 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.fa.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.fa.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.fa.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.fa.xlf</argument>
           </argument>
           <argument key="fi" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.fi.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.fi.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.fi.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.fi.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.fi.xlf</argument>
           </argument>
           <argument key="fr" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.fr.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.fr.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.fr.xlf</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.gl.xlf</argument>
@@ -2253,6 +2302,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.hu.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.hu.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.hu.xlf</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.hy.xlf</argument>
@@ -2264,18 +2314,21 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.id.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.id.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.id.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.id.xlf</argument>
           </argument>
           <argument key="it" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.it.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.it.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.it.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.it.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.it.xlf</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.ja.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.ja.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.ja.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ja.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ja.xlf</argument>
           </argument>
           <argument key="lb" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.lb.xlf</argument>
@@ -2297,11 +2350,13 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.mk.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.mk.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.mk.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.mk.xlf</argument>
           </argument>
           <argument key="mn" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.mn.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.mn.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.mn.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.mn.xlf</argument>
           </argument>
           <argument key="my" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.my.xlf</argument>
@@ -2318,6 +2373,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.nl.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.nl.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle+intl-icu.nl.xlf</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.nn.xlf</argument>
@@ -2335,11 +2391,13 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.pl.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.pl.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.pl.xlf</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.pt.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.pt.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.pt.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.pt.xlf</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.pt_BR.xlf</argument>
@@ -2352,17 +2410,20 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.ro.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.ro.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ro.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ro.xlf</argument>
           </argument>
           <argument key="ru" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.ru.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.ru.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.ru.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ru.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ru.xlf</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.sk.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.sk.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.sk.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.sk.xlf</argument>
           </argument>
           <argument key="sl" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.sl.xlf</argument>
@@ -2405,12 +2466,14 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.tr.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.tr.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.tr.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.tr.xlf</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.uk.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.uk.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.uk.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.uk.xliff</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.uk.xlf</argument>
           </argument>
           <argument key="ur" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.ur.xlf</argument>
@@ -2444,12 +2507,16 @@
           <argument key="sw" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.sw.xliff</argument>
           </argument>
+          <argument key="sr" type="collection">
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.sr.xlf</argument>
+          </argument>
         </argument>
         <argument key="scanned_directories" type="collection">
           <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations</argument>
           <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations</argument>
           <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations</argument>
           <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations</argument>
+          <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
           <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3/translations</argument>
           <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\framework-bundle/translations</argument>
           <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -2471,6 +2538,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
             <argument>translations</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\framework-bundle/translations</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -3499,7 +3567,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.hHuFWdb"/>
+      <argument type="service" id=".service_locator.ex.WkCn"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -4059,7 +4127,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.9QYCuGc"/>
+      <argument type="service" id=".service_locator.gl_beRq"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -5360,7 +5428,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.zIfEjDY"/>
+      <argument type="service" id=".service_locator.IICXA0h"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -7486,18 +7554,39 @@
       <argument>page</argument>
       <argument>false</argument>
     </service>
+    <service id="symfonycasts.verify_email.token_generator" class="SymfonyCasts\Bundle\VerifyEmail\Generator\VerifyEmailTokenGenerator">
+      <argument>%env(APP_SECRET)%</argument>
+    </service>
+    <service id="symfonycasts.verify_email.query_utility" class="SymfonyCasts\Bundle\VerifyEmail\Util\VerifyEmailQueryUtility"/>
+    <service id="symfonycasts.verify_email.uri_signer_factory" class="SymfonyCasts\Bundle\VerifyEmail\Factory\UriSignerFactory">
+      <argument>%env(APP_SECRET)%</argument>
+      <argument>signature</argument>
+    </service>
+    <service id="symfonycasts.verify_email.uri_signer" class="Symfony\Component\HttpFoundation\UriSigner">
+      <factory service="symfonycasts.verify_email.uri_signer_factory" method="createUriSigner"/>
+    </service>
+    <service id="symfonycasts.verify_email.helper" class="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelper">
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="symfonycasts.verify_email.uri_signer"/>
+      <argument type="service" id="symfonycasts.verify_email.query_utility"/>
+      <argument type="service" id="symfonycasts.verify_email.token_generator"/>
+      <argument>3600</argument>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CategoriesController" class="App\Controller\CategoriesController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CategoriesController" class="App\Controller\CategoriesController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CategoriesController" class="App\Controller\CategoriesController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\GammeController" class="App\Controller\GammeController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\GammeController" class="App\Controller\GammeController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\GammeController" class="App\Controller\GammeController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\InscriptionController" class="App\Controller\InscriptionController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\InscriptionController" class="App\Controller\InscriptionController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\InscriptionController" class="App\Controller\InscriptionController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\LivreController" class="App\Controller\LivreController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\LivreController" class="App\Controller\LivreController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\LivreController" class="App\Controller\LivreController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\TestController" class="App\Controller\TestController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\TestController" class="App\Controller\TestController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\TestController" class="App\Controller\TestController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7505,8 +7594,16 @@
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\Livresfixtures" class="App\DataFixtures\Livresfixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\Livresfixtures" class="App\DataFixtures\Livresfixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CategorieType" class="App\Form\CategorieType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\CategorieType" class="App\Form\CategorieType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CategoriesRepository" class="App\Repository\CategoriesRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CategoriesRepository" class="App\Repository\CategoriesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\LivreRepository" class="App\Repository\LivreRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\LivreRepository" class="App\Repository\LivreRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.pRu6x_4" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8025,6 +8122,36 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.zHyJIs5" method="withContext"/>
     </service>
+    <service id=".service_locator.BWSQ.0S" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="rep" type="service_closure" id="App\Repository\CategoriesRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.BWSQ.0S.App\Controller\CategoriesController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CategoriesController::index()"/>
+      <argument>App\Controller\CategoriesController::index()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.BWSQ.0S" method="withContext"/>
+    </service>
+    <service id=".service_locator.Kq27LHM" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.Kq27LHM.App\Controller\CategoriesController::create()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CategoriesController::create()"/>
+      <argument>App\Controller\CategoriesController::create()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.Kq27LHM" method="withContext"/>
+    </service>
+    <service id=".service_locator.Kq27LHM.App\Controller\CategoriesController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CategoriesController::edit()"/>
+      <argument>App\Controller\CategoriesController::edit()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.Kq27LHM" method="withContext"/>
+    </service>
     <service id=".service_locator.CGpsD3F" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8081,39 +8208,68 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.21cI76b" method="withContext"/>
     </service>
-    <service id=".service_locator.Kq27LHM" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
-      </argument>
-    </service>
     <service id=".service_locator.Kq27LHM.App\Controller\LivreController::create()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\LivreController::create()"/>
       <argument>App\Controller\LivreController::create()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.Kq27LHM" method="withContext"/>
     </service>
-    <service id=".service_locator.hHuFWdb" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.KAWHxDW" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userPasswordHasher" type="service_closure" id="security.user_password_hasher"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.KAWHxDW.App\Controller\RegistrationController::register()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\RegistrationController::register()"/>
+      <argument>App\Controller\RegistrationController::register()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.KAWHxDW" method="withContext"/>
+    </service>
+    <service id=".service_locator.KHhLDTq" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="translator" type="service_closure" id="translator.data_collector"/>
+      </argument>
+    </service>
+    <service id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\RegistrationController::verifyUserEmail()"/>
+      <argument>App\Controller\RegistrationController::verifyUserEmail()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.KHhLDTq" method="withContext"/>
+    </service>
+    <service id=".service_locator.ex.WkCn" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
+        <argument key="App\Controller\CategoriesController::index" type="service_closure" id=".service_locator.BWSQ.0S.App\Controller\CategoriesController::index()"/>
+        <argument key="App\Controller\CategoriesController::create" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\CategoriesController::create()"/>
+        <argument key="App\Controller\CategoriesController::edit" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\CategoriesController::edit()"/>
         <argument key="App\Controller\LivreController::delete" type="service_closure" id=".service_locator.CGpsD3F.App\Controller\LivreController::delete()"/>
         <argument key="App\Controller\LivreController::all" type="service_closure" id=".service_locator.5Tyk8_y.App\Controller\LivreController::all()"/>
         <argument key="App\Controller\LivreController::show2" type="service_closure" id=".service_locator.bWeTQZr.App\Controller\LivreController::show2()"/>
         <argument key="App\Controller\LivreController::show3" type="service_closure" id=".service_locator.bWeTQZr.App\Controller\LivreController::show3()"/>
         <argument key="App\Controller\LivreController::show" type="service_closure" id=".service_locator.21cI76b.App\Controller\LivreController::show()"/>
         <argument key="App\Controller\LivreController::create" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\LivreController::create()"/>
+        <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.KAWHxDW.App\Controller\RegistrationController::register()"/>
+        <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
+        <argument key="App\Controller\CategoriesController:index" type="service_closure" id=".service_locator.BWSQ.0S.App\Controller\CategoriesController::index()"/>
+        <argument key="App\Controller\CategoriesController:create" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\CategoriesController::create()"/>
+        <argument key="App\Controller\CategoriesController:edit" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\CategoriesController::edit()"/>
         <argument key="App\Controller\LivreController:delete" type="service_closure" id=".service_locator.CGpsD3F.App\Controller\LivreController::delete()"/>
         <argument key="App\Controller\LivreController:all" type="service_closure" id=".service_locator.5Tyk8_y.App\Controller\LivreController::all()"/>
         <argument key="App\Controller\LivreController:show2" type="service_closure" id=".service_locator.bWeTQZr.App\Controller\LivreController::show2()"/>
         <argument key="App\Controller\LivreController:show3" type="service_closure" id=".service_locator.bWeTQZr.App\Controller\LivreController::show3()"/>
         <argument key="App\Controller\LivreController:show" type="service_closure" id=".service_locator.21cI76b.App\Controller\LivreController::show()"/>
         <argument key="App\Controller\LivreController:create" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\LivreController::create()"/>
+        <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.KAWHxDW.App\Controller\RegistrationController::register()"/>
+        <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
       </argument>
     </service>
     <service id=".service_locator.ea.H0ae" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8293,9 +8449,11 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.9QYCuGc" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.gl_beRq" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\CategorieType" type="service_closure" id="App\Form\CategorieType"/>
+        <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="service_closure" id="form.type.file"/>
@@ -8428,10 +8586,12 @@
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.zIfEjDY" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.IICXA0h" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\CategoriesRepository" type="service_closure" id="App\Repository\CategoriesRepository"/>
         <argument key="App\Repository\LivreRepository" type="service_closure" id="App\Repository\LivreRepository"/>
+        <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
     <service id=".service_locator.BxSdgVt" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8690,21 +8850,27 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
+    <service id=".service_locator.ZyP9f7K.App\Controller\CategoriesController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CategoriesController"/>
+      <argument>App\Controller\CategoriesController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+    </service>
     <service id=".service_locator.ZyP9f7K.App\Controller\GammeController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\GammeController"/>
       <argument>App\Controller\GammeController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
-    <service id=".service_locator.ZyP9f7K.App\Controller\InscriptionController" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\InscriptionController"/>
-      <argument>App\Controller\InscriptionController</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
-    </service>
     <service id=".service_locator.ZyP9f7K.App\Controller\LivreController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\LivreController"/>
       <argument>App\Controller\LivreController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+    </service>
+    <service id=".service_locator.ZyP9f7K.App\Controller\RegistrationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\RegistrationController"/>
+      <argument>App\Controller\RegistrationController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
@@ -8900,9 +9066,10 @@
         <argument type="collection">
           <argument>App\Kernel</argument>
           <argument>App\Controller\ArticleController</argument>
+          <argument>App\Controller\CategoriesController</argument>
           <argument>App\Controller\GammeController</argument>
-          <argument>App\Controller\InscriptionController</argument>
           <argument>App\Controller\LivreController</argument>
+          <argument>App\Controller\RegistrationController</argument>
           <argument>App\Controller\TestController</argument>
           <argument>Doctrine\Bundle\DoctrineBundle\Controller\ProfilerController</argument>
         </argument>
@@ -10309,9 +10476,10 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="Knp\Component\Pager\PaginatorInterface" alias="knp_paginator"/>
     <service id="Knp\Component\Pager\ArgumentAccess\ArgumentAccessInterface" alias="Knp\Component\Pager\ArgumentAccess\RequestArgumentAccess"/>
+    <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.hHuFWdb"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.ex.WkCn"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10355,11 +10523,14 @@
     <service id="messenger.bus.default" alias="debug.traced.messenger.bus.default"/>
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.n_ENPtW" alias=".service_locator.zHyJIs5"/>
+    <service id=".service_locator.jgvhD8z" alias=".service_locator.BWSQ.0S"/>
+    <service id=".service_locator.HQZddX8" alias=".service_locator.Kq27LHM"/>
     <service id=".service_locator.LnndmLA" alias=".service_locator.CGpsD3F"/>
     <service id=".service_locator.3WpcW23" alias=".service_locator.5Tyk8_y"/>
     <service id=".service_locator.D80i8Vb" alias=".service_locator.bWeTQZr"/>
     <service id=".service_locator.lEdGYvX" alias=".service_locator.21cI76b"/>
-    <service id=".service_locator.HQZddX8" alias=".service_locator.Kq27LHM"/>
+    <service id=".service_locator.113K_6l" alias=".service_locator.KAWHxDW"/>
+    <service id=".service_locator.l6GrDWv" alias=".service_locator.KHhLDTq"/>
     <service id=".service_locator.9nvaCmp" alias=".service_locator.ZyP9f7K"/>
   </services>
 </container>

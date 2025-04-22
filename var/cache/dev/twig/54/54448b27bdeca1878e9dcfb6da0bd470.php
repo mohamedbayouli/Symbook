@@ -104,43 +104,48 @@ class __TwigTemplate_07b9084fdab0a1f8f2f00e2a9f969f8b extends Template
                 <th>Editeur</th>
                 <th>Date Edition</th>
                 <th>Prix</th>
+                <th>Categorie</th>
                 <th colspan=\"3\">Action</th>
             </tr>
         </thead>
         <tbody>
             ";
-        // line 17
+        // line 18
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["livre"]) || array_key_exists("livre", $context) ? $context["livre"] : (function () { throw new RuntimeError('Variable "livre" does not exist.', 17, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["livre"]) || array_key_exists("livre", $context) ? $context["livre"] : (function () { throw new RuntimeError('Variable "livre" does not exist.', 18, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["livres"]) {
-            // line 18
+            // line 19
             yield "                <tr>
                     <td>";
-            // line 19
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "titre", [], "any", false, false, false, 19), "html", null, true);
-            yield "</td>
-                    <td>";
             // line 20
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "editeur", [], "any", false, false, false, 20), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "titre", [], "any", false, false, false, 20), "html", null, true);
             yield "</td>
                     <td>";
             // line 21
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "dateEdition", [], "any", false, false, false, 21), "d/m/Y"), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "editeur", [], "any", false, false, false, 21), "html", null, true);
             yield "</td>
                     <td>";
             // line 22
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "prix", [], "any", false, false, false, 22), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "dateEdition", [], "any", false, false, false, 22), "d/m/Y"), "html", null, true);
+            yield "</td>
+                    <td>";
+            // line 23
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "prix", [], "any", false, false, false, 23), "html", null, true);
+            yield "</td>
+                    <td>";
+            // line 24
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "cat", [], "any", false, false, false, 24), "libelle", [], "any", false, false, false, 24), "html", null, true);
             yield "</td>
                     <td>
                         <a href=\"";
-            // line 24
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_livre_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "id", [], "any", false, false, false, 24)]), "html", null, true);
+            // line 26
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_livre_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "id", [], "any", false, false, false, 26)]), "html", null, true);
             yield "\">Voir Detail...</a>
                     </td>
                     <td>
                         <a href=\"";
-            // line 27
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_livre_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "id", [], "any", false, false, false, 27)]), "html", null, true);
+            // line 29
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_livre_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "id", [], "any", false, false, false, 29)]), "html", null, true);
             yield "\">Supprimer</a>
                     </td>
                     <td>
@@ -152,13 +157,13 @@ class __TwigTemplate_07b9084fdab0a1f8f2f00e2a9f969f8b extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['livres'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 34
+        // line 36
         yield "        </tbody>
     </table>
     <div class=\"navigation\">
     ";
-        // line 37
-        yield $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["livre"]) || array_key_exists("livre", $context) ? $context["livre"] : (function () { throw new RuntimeError('Variable "livre" does not exist.', 37, $this->source); })()));
+        // line 39
+        yield $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["livre"]) || array_key_exists("livre", $context) ? $context["livre"] : (function () { throw new RuntimeError('Variable "livre" does not exist.', 39, $this->source); })()));
         yield "
 </div>
 
@@ -193,7 +198,7 @@ class __TwigTemplate_07b9084fdab0a1f8f2f00e2a9f969f8b extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  161 => 37,  156 => 34,  143 => 27,  137 => 24,  132 => 22,  128 => 21,  124 => 20,  120 => 19,  117 => 18,  113 => 17,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  166 => 39,  161 => 36,  148 => 29,  142 => 26,  137 => 24,  133 => 23,  129 => 22,  125 => 21,  121 => 20,  118 => 19,  114 => 18,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -210,6 +215,7 @@ class __TwigTemplate_07b9084fdab0a1f8f2f00e2a9f969f8b extends Template
                 <th>Editeur</th>
                 <th>Date Edition</th>
                 <th>Prix</th>
+                <th>Categorie</th>
                 <th colspan=\"3\">Action</th>
             </tr>
         </thead>
@@ -220,6 +226,7 @@ class __TwigTemplate_07b9084fdab0a1f8f2f00e2a9f969f8b extends Template
                     <td>{{ livres.editeur }}</td>
                     <td>{{ livres.dateEdition|date('d/m/Y') }}</td>
                     <td>{{ livres.prix }}</td>
+                    <td>{{ livres.cat.libelle}}</td>
                     <td>
                         <a href=\"{{ path('app_livre_show', {'id': livres.id}) }}\">Voir Detail...</a>
                     </td>

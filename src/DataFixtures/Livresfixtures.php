@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Categories;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Faker\Factory;
 use App\Entity\Livre;
@@ -12,7 +13,14 @@ class Livresfixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
             $faker = Factory::create('fr_FR');
-        for ($i =1; $i<=100; $i++){
+            for($j=1;$j<=5;$j++){
+                $categorie = new Categories();
+                $libelle=$faker->name;
+                $categorie->setLibelle($libelle)
+                          ->setSlug(strtolower(str_replace(' ', '-', $libelle)))
+                            ->setDescription($faker->text);
+                $manager->persist($categorie);
+        for ($i =1; $i<=20; $i++){
 
             $livre = new Livre();
             $titre=$faker->name();
@@ -24,11 +32,11 @@ class Livresfixtures extends Fixture
             $livre->setIsbn($faker->isbn13());
             $livre->setDateEdition($faker->dateTimeBetween('-6 months'));
             $livre->setPrix($faker->randomFloat(2, 10, 700));  
-    
+            $livre->setCat($categorie);
     
             $manager->persist($livre);
     
-           }  
+           }  }
            $manager->flush();
     }
 }
