@@ -29,7 +29,7 @@
                         <a href="{{ path('app_livre_delete', {'id': livres.id}) }}">Supprimer</a>
                     </td>
                     <td>
-                        <a href="#">Editer</a>
+                        <a href="{{ path('admin_livre_edit', {'id': livres.id}) }}">Editer</a>
                     </td>
                 </tr>
             {% endfor %}

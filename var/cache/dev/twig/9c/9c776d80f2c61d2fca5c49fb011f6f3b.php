@@ -99,28 +99,40 @@ class __TwigTemplate_a5c580945b42ae381f63c928ecc2cfdc extends Template
         // line 6
         yield " <h1>Liste des categories</h1>
     
-    <a href=\"#\" class=\"btn btn-primary xl\">Ajouter une nouvelle categorie</a>
-    <ul>
+    <a href=\"";
+        // line 8
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_categories_create");
+        yield "\" class=\"btn btn-primary xl\">Ajouter une nouvelle categorie</a>
+    <table>
         ";
         // line 10
         $context['_parent'] = $context;
         $context['_seq'] = CoreExtension::ensureTraversable((isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 10, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["cat"]) {
             // line 11
-            yield "            <li>
-                ";
+            yield "            <tr>
+                <td>";
             // line 12
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["cat"], "libelle", [], "any", false, false, false, 12), "html", null, true);
-            yield " <a href=\"#\">editer</a>    <a href=\"#\">Voir Detail</a>
-            </li>
+            yield "</td>
+                <td>
+                 <a href=\"";
+            // line 14
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_categories_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["cat"], "id", [], "any", false, false, false, 14)]), "html", null, true);
+            yield "\" class=\"btn btn-primary \">editer</a> 
+                 </td>
+                 <td>
+                    <a href=\"#\" class =\"btn btn-warning \">Voir Detail</a>
+                    </td>
+            </tr>
            
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['cat'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 16
-        yield "    </ul>
+        // line 22
+        yield "   </table>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -152,7 +164,7 @@ class __TwigTemplate_a5c580945b42ae381f63c928ecc2cfdc extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  123 => 16,  113 => 12,  110 => 11,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  135 => 22,  121 => 14,  116 => 12,  113 => 11,  109 => 10,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -164,16 +176,22 @@ class __TwigTemplate_a5c580945b42ae381f63c928ecc2cfdc extends Template
 {% block body %}
  <h1>Liste des categories</h1>
     
-    <a href=\"#\" class=\"btn btn-primary xl\">Ajouter une nouvelle categorie</a>
-    <ul>
+    <a href=\"{{path('admin_categories_create')}}\" class=\"btn btn-primary xl\">Ajouter une nouvelle categorie</a>
+    <table>
         {% for cat in categories %}
-            <li>
-                {{ cat.libelle }} <a href=\"#\">editer</a>    <a href=\"#\">Voir Detail</a>
-            </li>
+            <tr>
+                <td>{{ cat.libelle }}</td>
+                <td>
+                 <a href=\"{{path('admin_categories_edit',{'id': cat.id })}}\" class=\"btn btn-primary \">editer</a> 
+                 </td>
+                 <td>
+                    <a href=\"#\" class =\"btn btn-warning \">Voir Detail</a>
+                    </td>
+            </tr>
            
         {% endfor %}
-    </ul>
+   </table>
 {% endblock %}
-", "categories/index.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\categories\\index.html.twig");
+ ", "categories/index.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\categories\\index.html.twig");
     }
 }

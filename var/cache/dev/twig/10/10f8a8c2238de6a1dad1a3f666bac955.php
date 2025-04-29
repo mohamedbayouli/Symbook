@@ -106,21 +106,28 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
         </li>
       </ul>
       <ul class=\"navbar-nav\">
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">
-            <i class=\"fas fa-sign-in-alt me-1\"></i>Connexion
-          </a>
-        </li>
+        
         <li class=\"nav-item\">
           <a class=\"nav-link\" href=\"";
-        // line 55
+        // line 51
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
         yield "\">
             <i class=\"fas fa-user-plus me-1\"></i>Inscription
           </a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">
+          <a class=\"nav-link\" href=\"";
+        // line 56
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+        yield "\">
+            <i class=\"fas fa-sign-in-alt me-1\"></i>Connexion
+          </a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"";
+        // line 61
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+        yield "\">
             <i class=\"fas fa-sign-out-alt me-1\"></i>Déconnexion
           </a>
         </li>
@@ -128,12 +135,45 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
     </div>
   </div>
 </nav>
-     
+     <div class=\"container mt-3\">
+     ";
+        // line 71
+        yield "        ";
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 71, $this->source); })()), "flashes", [], "any", false, false, false, 71));
+        foreach ($context['_seq'] as $context["label"] => $context["messages"]) {
+            // line 72
+            yield "            <div class=\"alert alert-";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["label"], "html", null, true);
+            yield "\">
+                ";
+            // line 73
+            $context['_parent'] = $context;
+            $context['_seq'] = CoreExtension::ensureTraversable($context["messages"]);
+            foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+                // line 74
+                yield "                    ";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
+                yield "
+                ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 76
+            yield "            </div>
         ";
-        // line 69
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['label'], $context['messages'], $context['_parent']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 78
+        yield "        
+        ";
+        // line 79
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 72
-        yield "       
+        // line 82
+        yield "        </div>
     </body>
 </html>
 ";
@@ -218,7 +258,7 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
         yield from [];
     }
 
-    // line 69
+    // line 79
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -231,7 +271,7 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 70
+        // line 80
         yield "       
         ";
         
@@ -264,7 +304,7 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  235 => 70,  222 => 69,  210 => 13,  197 => 12,  186 => 10,  173 => 9,  150 => 5,  136 => 72,  134 => 69,  117 => 55,  75 => 15,  73 => 12,  70 => 11,  68 => 9,  64 => 8,  58 => 5,  52 => 1,);
+        return array (  275 => 80,  262 => 79,  250 => 13,  237 => 12,  226 => 10,  213 => 9,  190 => 5,  176 => 82,  174 => 79,  171 => 78,  164 => 76,  155 => 74,  151 => 73,  146 => 72,  141 => 71,  129 => 61,  121 => 56,  113 => 51,  75 => 15,  73 => 12,  70 => 11,  68 => 9,  64 => 8,  58 => 5,  52 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -317,18 +357,19 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
         </li>
       </ul>
       <ul class=\"navbar-nav\">
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">
-            <i class=\"fas fa-sign-in-alt me-1\"></i>Connexion
-          </a>
-        </li>
+        
         <li class=\"nav-item\">
           <a class=\"nav-link\" href=\"{{ path('app_register') }}\">
             <i class=\"fas fa-user-plus me-1\"></i>Inscription
           </a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">
+          <a class=\"nav-link\" href=\"{{ path('app_login') }}\">
+            <i class=\"fas fa-sign-in-alt me-1\"></i>Connexion
+          </a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"{{ path('app_logout') }}\">
             <i class=\"fas fa-sign-out-alt me-1\"></i>Déconnexion
           </a>
         </li>
@@ -336,11 +377,20 @@ class __TwigTemplate_c0d17a1fc23a85499bf5d4932f34dee4 extends Template
     </div>
   </div>
 </nav>
-     
+     <div class=\"container mt-3\">
+     {# {{ dump(app.flashes) }}#}
+        {% for label, messages in app.flashes %}
+            <div class=\"alert alert-{{ label }}\">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endfor %}
+        
         {% block body %}
        
         {% endblock %}
-       
+        </div>
     </body>
 </html>
 ", "base.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\base.html.twig");

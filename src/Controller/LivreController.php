@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
-use App\Repository\LivreRepository;
 use App\Entity\Livre;
+use App\Form\LivreType;
+use App\Repository\LivreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class LivreController extends AbstractController{
     #[Route('admin/livre/delete/{id}', name: 'app_livre_delete')]
@@ -74,5 +75,25 @@ final class LivreController extends AbstractController{
 
 
                
+    }
+    #[Route('admin/livre/edit/{id}', name: 'admin_livre_edit')]
+    public function edit(EntityManagerInterface $em,Request $request,Livre $livre)
+    {
+        if(!$livre){
+            throw $this->createNotFoundException('Livre de l\'id {$livre->getId()} non trouvé');
+        }
+        $form = $this->createForm(LivreType::class, $livre);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($livre);
+            $em->flush();
+            return $this->redirectToRoute('app_livre_all');
+        }
+
+
+        return $this->render('livre/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
     }
 }

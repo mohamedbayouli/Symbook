@@ -30,7 +30,10 @@ final class CategoriesController extends AbstractController{
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($categories);
-            $em->flush();
+            $em->flush(); 
+            $this->addFlash('success', 'La catégorie'.$categories->getLibelle().'a été ajoutée avec succès');
+            $this->addFlash('success', 'un email a été envoyé à l\'administrateur');
+
             return $this->redirectToRoute('admin_categories');
         }
 
@@ -40,11 +43,12 @@ final class CategoriesController extends AbstractController{
         ]);
 
     }
-    #[Route('admin/categories/edit', name: 'admin_categories_edit')]
-    public function edit(EntityManagerInterface $em,Request $request)
+    #[Route('admin/categories/edit/{id}', name: 'admin_categories_edit')]
+    public function edit(EntityManagerInterface $em,Request $request,Categories $categories)
     {
-
-        $categories = new Categories();
+        if(!$categories){
+            throw $this->createNotFoundException('Categorie de l\'id {$categories->getId()} non trouvé');
+        }
         $form = $this->createForm(categorieType::class, $categories);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -54,8 +58,8 @@ final class CategoriesController extends AbstractController{
         }
 
 
-        return $this->render('categories/create.html.twig', [
-            'f' => $form->createView(),
+        return $this->render('categories/edit.html.twig', [
+            'form' => $form->createView(),
         ]);
 
     }

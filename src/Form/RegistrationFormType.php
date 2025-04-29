@@ -28,24 +28,24 @@ class RegistrationFormType extends AbstractType
                                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter nos conditions.',
                     ]),
                 ],
             ])
             ->add('plainPassword', RepeatedType::class, [ // Changed from PasswordType
                 'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => 'Les champs du mot de passe doivent correspondre.',
                 'options' => ['attr' => ['autocomplete' => 'new-password']],
                 'required' => true,
                 'first_options'  => [
                     'label' => 'Mot de passe',
                     'constraints' => [
                         new NotBlank([
-                            'message' => 'Please enter a password',
+                            'message' => 'Veuillez entrer un mot de passe',
                         ]),
                         new Length([
                             'min' => 8,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
+                            'minMessage' => 'Votre mot de passe doit comporter au moins {{ limit }} caractères',
                             'max' => 4096,
                         ]),
                     ],

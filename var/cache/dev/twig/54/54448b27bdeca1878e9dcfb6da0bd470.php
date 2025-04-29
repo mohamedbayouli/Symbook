@@ -149,7 +149,10 @@ class __TwigTemplate_07b9084fdab0a1f8f2f00e2a9f969f8b extends Template
             yield "\">Supprimer</a>
                     </td>
                     <td>
-                        <a href=\"#\">Editer</a>
+                        <a href=\"";
+            // line 32
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_livre_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["livres"], "id", [], "any", false, false, false, 32)]), "html", null, true);
+            yield "\">Editer</a>
                     </td>
                 </tr>
             ";
@@ -198,7 +201,7 @@ class __TwigTemplate_07b9084fdab0a1f8f2f00e2a9f969f8b extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  166 => 39,  161 => 36,  148 => 29,  142 => 26,  137 => 24,  133 => 23,  129 => 22,  125 => 21,  121 => 20,  118 => 19,  114 => 18,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  169 => 39,  164 => 36,  154 => 32,  148 => 29,  142 => 26,  137 => 24,  133 => 23,  129 => 22,  125 => 21,  121 => 20,  118 => 19,  114 => 18,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -234,7 +237,7 @@ class __TwigTemplate_07b9084fdab0a1f8f2f00e2a9f969f8b extends Template
                         <a href=\"{{ path('app_livre_delete', {'id': livres.id}) }}\">Supprimer</a>
                     </td>
                     <td>
-                        <a href=\"#\">Editer</a>
+                        <a href=\"{{ path('admin_livre_edit', {'id': livres.id}) }}\">Editer</a>
                     </td>
                 </tr>
             {% endfor %}
