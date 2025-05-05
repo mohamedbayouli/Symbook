@@ -97,48 +97,47 @@ class __TwigTemplate_ab709c8a09a9dae4986dbb7238b32023 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "<div class=\"container d-flex justify-content-center align-items-center min-vh-100\">
-    <div class=\"card shadow-lg p-4\" style=\"width: 100%; max-width: 500px;\">
-<form method=\"post\">
+        yield "<form method=\"post\">
     ";
-        // line 9
-        if (((isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 9, $this->source); })()) != null)) {
-            // line 10
+        // line 7
+        if ((isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 7, $this->source); })())) {
+            // line 8
             yield "        <div class=\"alert alert-danger\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 10, $this->source); })()), "messageKey", [], "any", false, false, false, 10), CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 10, $this->source); })()), "messageData", [], "any", false, false, false, 10), "security"), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 8, $this->source); })()), "messageKey", [], "any", false, false, false, 8), CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 8, $this->source); })()), "messageData", [], "any", false, false, false, 8), "security"), "html", null, true);
             yield "</div>
     ";
         }
-        // line 12
+        // line 10
         yield "
     ";
-        // line 13
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 13, $this->source); })()), "user", [], "any", false, false, false, 13)) {
-            // line 14
+        // line 11
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 11, $this->source); })()), "user", [], "any", false, false, false, 11)) {
+            // line 12
             yield "        <div class=\"mb-3\">
             You are logged in as ";
-            // line 15
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 15, $this->source); })()), "user", [], "any", false, false, false, 15), "userIdentifier", [], "any", false, false, false, 15), "html", null, true);
+            // line 13
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 13, $this->source); })()), "user", [], "any", false, false, false, 13), "userIdentifier", [], "any", false, false, false, 13), "html", null, true);
             yield ", <a href=\"";
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\">Logout</a>
         </div>
     ";
         }
-        // line 18
-        yield "
-    <h1 class=\"h3 mb-3 font-weight-normal\">Connexion</h1>
+        // line 16
+        yield "<div class=\"container d-flex justify-content-center align-items-center  mt-5\">
+    <div class=\"card shadow-lg p-4\" style=\"width: 100%; max-width: 500px;\">
+    <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>
     <label for=\"inputEmail\">Email</label>
     <input type=\"email\" value=\"";
-        // line 21
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["last_username"]) || array_key_exists("last_username", $context) ? $context["last_username"] : (function () { throw new RuntimeError('Variable "last_username" does not exist.', 21, $this->source); })()), "html", null, true);
+        // line 20
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["last_username"]) || array_key_exists("last_username", $context) ? $context["last_username"] : (function () { throw new RuntimeError('Variable "last_username" does not exist.', 20, $this->source); })()), "html", null, true);
         yield "\" name=\"email\" id=\"inputEmail\" class=\"form-control\" autocomplete=\"email\" required autofocus>
-    <label for=\"inputPassword\">Mot de passe</label>
+    <label for=\"inputPassword\">Password</label>
     <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" autocomplete=\"current-password\" required>
 
     <input type=\"hidden\" name=\"_csrf_token\"
            value=\"";
-        // line 26
+        // line 25
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken("authenticate"), "html", null, true);
         yield "\"
     >
@@ -150,8 +149,12 @@ class __TwigTemplate_ab709c8a09a9dae4986dbb7238b32023 extends Template
     </div>
 
     <button class=\"btn btn-lg btn-primary\" type=\"submit\">
-        Se connecter
+        Sign in
     </button>
+    <a href=\"";
+        // line 37
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_forgot_password_request");
+        yield "\" >Réinitialisation de mot de passe</a>
 </form>
 </div>
 </div>
@@ -186,7 +189,7 @@ class __TwigTemplate_ab709c8a09a9dae4986dbb7238b32023 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  142 => 26,  134 => 21,  129 => 18,  121 => 15,  118 => 14,  116 => 13,  113 => 12,  107 => 10,  105 => 9,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  156 => 37,  141 => 25,  133 => 20,  127 => 16,  119 => 13,  116 => 12,  114 => 11,  111 => 10,  105 => 8,  103 => 7,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -196,10 +199,8 @@ class __TwigTemplate_ab709c8a09a9dae4986dbb7238b32023 extends Template
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<div class=\"container d-flex justify-content-center align-items-center min-vh-100\">
-    <div class=\"card shadow-lg p-4\" style=\"width: 100%; max-width: 500px;\">
 <form method=\"post\">
-    {% if error != null %}
+    {% if error %}
         <div class=\"alert alert-danger\">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
@@ -208,11 +209,12 @@ class __TwigTemplate_ab709c8a09a9dae4986dbb7238b32023 extends Template
             You are logged in as {{ app.user.userIdentifier }}, <a href=\"{{ path('app_logout') }}\">Logout</a>
         </div>
     {% endif %}
-
-    <h1 class=\"h3 mb-3 font-weight-normal\">Connexion</h1>
+<div class=\"container d-flex justify-content-center align-items-center  mt-5\">
+    <div class=\"card shadow-lg p-4\" style=\"width: 100%; max-width: 500px;\">
+    <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>
     <label for=\"inputEmail\">Email</label>
     <input type=\"email\" value=\"{{ last_username }}\" name=\"email\" id=\"inputEmail\" class=\"form-control\" autocomplete=\"email\" required autofocus>
-    <label for=\"inputPassword\">Mot de passe</label>
+    <label for=\"inputPassword\">Password</label>
     <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" autocomplete=\"current-password\" required>
 
     <input type=\"hidden\" name=\"_csrf_token\"
@@ -226,8 +228,9 @@ class __TwigTemplate_ab709c8a09a9dae4986dbb7238b32023 extends Template
     </div>
 
     <button class=\"btn btn-lg btn-primary\" type=\"submit\">
-        Se connecter
+        Sign in
     </button>
+    <a href=\"{{ path('app_forgot_password_request') }}\" >Réinitialisation de mot de passe</a>
 </form>
 </div>
 </div>

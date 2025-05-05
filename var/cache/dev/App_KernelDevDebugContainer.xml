@@ -28,6 +28,7 @@
       <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
       <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
       <parameter key="SymfonyCastsVerifyEmailBundle">SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle</parameter>
+      <parameter key="SymfonyCastsResetPasswordBundle">SymfonyCasts\Bundle\ResetPassword\SymfonyCastsResetPasswordBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -89,6 +90,10 @@
       <parameter key="SymfonyCastsVerifyEmailBundle" type="collection">
         <parameter key="path">C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src</parameter>
         <parameter key="namespace">SymfonyCasts\Bundle\VerifyEmail</parameter>
+      </parameter>
+      <parameter key="SymfonyCastsResetPasswordBundle" type="collection">
+        <parameter key="path">C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src</parameter>
+        <parameter key="namespace">SymfonyCasts\Bundle\ResetPassword</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -408,13 +413,6 @@
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\LivreController"/>
       </call>
     </service>
-    <service id="App\Controller\LoginController" class="App\Controller\LoginController" public="true" autowire="true" autoconfigure="true">
-      <tag name="controller.service_arguments"/>
-      <tag name="container.service_subscriber"/>
-      <call method="setContainer">
-        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\LoginController"/>
-      </call>
-    </service>
     <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -423,11 +421,20 @@
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\RegistrationController"/>
       </call>
     </service>
-    <service id="App\Controller\TestController" class="App\Controller\TestController" public="true" autowire="true" autoconfigure="true">
+    <service id="App\Controller\ResetPasswordController" class="App\Controller\ResetPasswordController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="symfonycasts.reset_password.helper"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\ResetPasswordController"/>
+      </call>
+    </service>
+    <service id="App\Controller\SecurityController" class="App\Controller\SecurityController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
-        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\TestController"/>
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\SecurityController"/>
       </call>
     </service>
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
@@ -439,10 +446,16 @@
     <service id="App\Form\CategorieType" class="App\Form\CategorieType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\LivreType" class="App\Form\LivreType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Repository\CategoriesRepository" class="App\Repository\CategoriesRepository" autowire="true" autoconfigure="true">
@@ -450,6 +463,10 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\LivreRepository" class="App\Repository\LivreRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -493,7 +510,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.G5jyhjd"/>
+      <argument type="service" id=".service_locator.lIxkgIF"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1328,6 +1345,7 @@
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations</argument>
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations</argument>
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
+        <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\twig-bridge/Resources/views/Email</argument>
@@ -1356,6 +1374,7 @@
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations</argument>
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations</argument>
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
+        <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\twig-bridge/Resources/views/Email</argument>
@@ -1453,8 +1472,10 @@
       </argument>
       <argument type="collection">
         <argument>App\Form\CategorieType</argument>
+        <argument>App\Form\ChangePasswordFormType</argument>
         <argument>App\Form\LivreType</argument>
         <argument>App\Form\RegistrationFormType</argument>
+        <argument>App\Form\ResetPasswordRequestFormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -2197,6 +2218,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.ar.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ar.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ar.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.ar.xlf</argument>
           </argument>
           <argument key="az" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.az.xlf</argument>
@@ -2225,6 +2247,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.ca.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ca.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ca.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.ca.xlf</argument>
           </argument>
           <argument key="cs" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.cs.xlf</argument>
@@ -2232,6 +2255,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.cs.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.cs.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.cs.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.cs.xlf</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.cy.xlf</argument>
@@ -2244,6 +2268,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.da.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.da.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.da.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.da.xlf</argument>
           </argument>
           <argument key="de" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.de.xlf</argument>
@@ -2251,12 +2276,14 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.de.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.de.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.de.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.de.xlf</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.el.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.el.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.el.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.el.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.el.xlf</argument>
           </argument>
           <argument key="en" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.en.xlf</argument>
@@ -2264,6 +2291,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.en.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.en.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.en.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.en.xlf</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.es.xlf</argument>
@@ -2271,6 +2299,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.es.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.es.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.es.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.es.xlf</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.et.xlf</argument>
@@ -2289,6 +2318,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.fa.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.fa.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.fa.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.fa.xlf</argument>
           </argument>
           <argument key="fi" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.fi.xlf</argument>
@@ -2296,6 +2326,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.fi.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.fi.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.fi.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.fi.xlf</argument>
           </argument>
           <argument key="fr" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.fr.xlf</argument>
@@ -2303,6 +2334,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.fr.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.fr.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.fr.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.fr.xlf</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.gl.xlf</argument>
@@ -2326,6 +2358,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.hu.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.hu.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.hu.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.hu.xlf</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.hy.xlf</argument>
@@ -2338,6 +2371,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.id.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.id.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.id.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.id.xlf</argument>
           </argument>
           <argument key="it" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.it.xlf</argument>
@@ -2345,6 +2379,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.it.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.it.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.it.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.it.xlf</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.ja.xlf</argument>
@@ -2352,6 +2387,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.ja.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ja.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ja.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.ja.xlf</argument>
           </argument>
           <argument key="lb" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.lb.xlf</argument>
@@ -2374,12 +2410,14 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.mk.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.mk.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.mk.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.mk.xlf</argument>
           </argument>
           <argument key="mn" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.mn.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.mn.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.mn.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.mn.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.mn.xlf</argument>
           </argument>
           <argument key="my" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.my.xlf</argument>
@@ -2397,6 +2435,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.nl.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.nl.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle+intl-icu.nl.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle+intl-icu.nl.xlf</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.nn.xlf</argument>
@@ -2415,12 +2454,14 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.pl.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.pl.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.pl.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.pl.xlf</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.pt.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.pt.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.pt.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.pt.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.pt.xlf</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.pt_BR.xlf</argument>
@@ -2434,6 +2475,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.ro.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ro.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ro.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.ro.xlf</argument>
           </argument>
           <argument key="ru" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.ru.xlf</argument>
@@ -2441,12 +2483,14 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.ru.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ru.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ru.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.ru.xlf</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.sk.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\form/Resources/translations\validators.sk.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.sk.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.sk.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.sk.xlf</argument>
           </argument>
           <argument key="sl" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.sl.xlf</argument>
@@ -2490,6 +2534,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.tr.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.tr.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.tr.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.tr.xlf</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.uk.xlf</argument>
@@ -2497,6 +2542,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations\security.uk.xlf</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.uk.xliff</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.uk.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.uk.xlf</argument>
           </argument>
           <argument key="ur" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\validator/Resources/translations\validators.ur.xlf</argument>
@@ -2532,6 +2578,7 @@
           </argument>
           <argument key="sr" type="collection">
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.sr.xlf</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations\ResetPasswordBundle.sr.xlf</argument>
           </argument>
         </argument>
         <argument key="scanned_directories" type="collection">
@@ -2540,6 +2587,7 @@
           <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations</argument>
           <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations</argument>
           <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
+          <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations</argument>
           <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3/translations</argument>
           <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\framework-bundle/translations</argument>
           <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -2562,6 +2610,7 @@
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\security-core/Resources/translations</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\knplabs\knp-paginator-bundle/translations</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
+            <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfonycasts\reset-password-bundle\src/Resources/translations</argument>
             <argument>translations</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\symfony\framework-bundle/translations</argument>
             <argument>C:\xampp\htdocs\symphonie 2025\tp3\tp3\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -3598,7 +3647,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.G5jyhjd"/>
+      <argument type="service" id=".service_locator.lIxkgIF"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -4158,7 +4207,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.bV8NojX"/>
+      <argument type="service" id=".service_locator.mrJaaaE"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -5463,7 +5512,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.IICXA0h"/>
+      <argument type="service" id=".service_locator.hqyzhI8"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -6801,7 +6850,7 @@
       <tag name="monolog.logger" channel="security"/>
       <argument type="service" id="security.untracked_token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+        <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
       </argument>
       <argument type="abstract">Provider Key</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -6927,7 +6976,7 @@
     </service>
     <service id="security.listener.user_provider" class="Symfony\Component\Security\Http\EventListener\UserProviderListener">
       <tag name="kernel.event_listener" event="Symfony\Component\Security\Http\Event\CheckPassportEvent" priority="1024" method="checkPassport"/>
-      <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
     </service>
     <service id="security.listener.user_provider.abstract" class="Symfony\Component\Security\Http\EventListener\UserProviderListener" abstract="true">
       <argument type="abstract">user provider</argument>
@@ -7117,8 +7166,11 @@
         <argument>Display information about your security firewall(s)</argument>
       </call>
     </service>
-    <service id="security.user.provider.concrete.users_in_memory" class="Symfony\Component\Security\Core\User\InMemoryUserProvider">
-      <argument type="collection"/>
+    <service id="security.user.provider.concrete.app_user_provider" class="Symfony\Bridge\Doctrine\Security\User\EntityUserProvider">
+      <argument type="service" id="doctrine"/>
+      <argument>App\Entity\User</argument>
+      <argument>email</argument>
+      <argument>null</argument>
     </service>
     <service id="security.firewall.map.config.dev" class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig">
       <argument>dev</argument>
@@ -7155,7 +7207,7 @@
       <argument>null</argument>
       <argument>true</argument>
       <argument>false</argument>
-      <argument>security.user.provider.concrete.users_in_memory</argument>
+      <argument>security.user.provider.concrete.app_user_provider</argument>
       <argument>main</argument>
       <argument>App\Security\LoginAuthenticator</argument>
       <argument>null</argument>
@@ -7178,7 +7230,7 @@
     </service>
     <service id="security.listener.main.user_provider" class="Symfony\Component\Security\Http\EventListener\UserProviderListener">
       <tag name="kernel.event_listener" dispatcher="debug.security.event_dispatcher.main" event="Symfony\Component\Security\Http\Event\CheckPassportEvent" priority="2048" method="checkPassport"/>
-      <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
     </service>
     <service id="security.user_checker.chain.main" class="Symfony\Component\Security\Core\User\ChainUserChecker">
       <argument type="tagged_iterator" tag="security.user_checker.main"/>
@@ -7188,7 +7240,7 @@
       <tag name="container.hot_path"/>
       <argument type="service" id="security.untracked_token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+        <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
       </argument>
       <argument>main</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -7287,7 +7339,7 @@
     <service id="security.authenticator.remember_me_handler.main" class="Symfony\Component\Security\Http\RememberMe\SignatureRememberMeHandler">
       <tag name="security.remember_me_handler" firewall="main"/>
       <argument type="service" id="security.authenticator.remember_me_signature_hasher.main"/>
-      <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
       <argument type="service" id="request_stack"/>
       <argument type="collection">
         <argument key="secret">%env(APP_SECRET)%</argument>
@@ -7770,6 +7822,31 @@
       <argument type="service" id="symfonycasts.verify_email.token_generator"/>
       <argument>3600</argument>
     </service>
+    <service id="symfonycasts.reset_password.fake_request_repository" class="SymfonyCasts\Bundle\ResetPassword\Persistence\Fake\FakeResetPasswordInternalRepository"/>
+    <service id="symfonycasts.reset_password.cleaner" class="SymfonyCasts\Bundle\ResetPassword\Util\ResetPasswordCleaner">
+      <argument type="service" id="App\Repository\ResetPasswordRequestRepository"/>
+      <argument>true</argument>
+    </service>
+    <service id="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand" class="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand">
+      <tag name="console.command" command="reset-password:remove-expired"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="symfonycasts.reset_password.cleaner"/>
+      <call method="setName">
+        <argument>reset-password:remove-expired</argument>
+      </call>
+    </service>
+    <service id="symfonycasts.reset_password.random_generator" class="SymfonyCasts\Bundle\ResetPassword\Generator\ResetPasswordRandomGenerator"/>
+    <service id="symfonycasts.reset_password.token_generator" class="SymfonyCasts\Bundle\ResetPassword\Generator\ResetPasswordTokenGenerator">
+      <argument>%env(APP_SECRET)%</argument>
+      <argument type="service" id="symfonycasts.reset_password.random_generator"/>
+    </service>
+    <service id="symfonycasts.reset_password.helper" class="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelper">
+      <argument type="service" id="symfonycasts.reset_password.token_generator"/>
+      <argument type="service" id="symfonycasts.reset_password.cleaner"/>
+      <argument type="service" id="App\Repository\ResetPasswordRequestRepository"/>
+      <argument>3600</argument>
+      <argument>3600</argument>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7782,29 +7859,35 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\LivreController" class="App\Controller\LivreController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\LivreController" class="App\Controller\LivreController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\LivreController" class="App\Controller\LivreController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\TestController" class="App\Controller\TestController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\TestController" class="App\Controller\TestController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\TestController" class="App\Controller\TestController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ResetPasswordController" class="App\Controller\ResetPasswordController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ResetPasswordController" class="App\Controller\ResetPasswordController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ResetPasswordController" class="App\Controller\ResetPasswordController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\Livresfixtures" class="App\DataFixtures\Livresfixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\Livresfixtures" class="App\DataFixtures\Livresfixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CategorieType" class="App\Form\CategorieType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\CategorieType" class="App\Form\CategorieType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\LivreType" class="App\Form\LivreType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\LivreType" class="App\Form\LivreType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CategoriesRepository" class="App\Repository\CategoriesRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CategoriesRepository" class="App\Repository\CategoriesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\LivreRepository" class="App\Repository\LivreRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\LivreRepository" class="App\Repository\LivreRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.pRu6x_4" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8486,18 +8569,6 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.CGpsD3F" method="withContext"/>
     </service>
-    <service id=".service_locator.3QECKYg" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
-      </argument>
-    </service>
-    <service id=".service_locator.3QECKYg.App\Controller\LoginController::login()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\LoginController::login()"/>
-      <argument>App\Controller\LoginController::login()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.3QECKYg" method="withContext"/>
-    </service>
     <service id=".service_locator.KAWHxDW" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8511,19 +8582,58 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.KAWHxDW" method="withContext"/>
     </service>
-    <service id=".service_locator.KHhLDTq" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.vPVKT.B" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="translator" type="service_closure" id="translator.data_collector"/>
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.vPVKT.B.App\Controller\RegistrationController::verifyUserEmail()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\RegistrationController::verifyUserEmail()"/>
       <argument>App\Controller\RegistrationController::verifyUserEmail()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.KHhLDTq" method="withContext"/>
+      <factory service=".service_locator.vPVKT.B" method="withContext"/>
     </service>
-    <service id=".service_locator.G5jyhjd" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.PtEirWk" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="mailer" type="service_closure" id="mailer.mailer"/>
+        <argument key="translator" type="service_closure" id="translator.data_collector"/>
+      </argument>
+    </service>
+    <service id=".service_locator.PtEirWk.App\Controller\ResetPasswordController::request()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ResetPasswordController::request()"/>
+      <argument>App\Controller\ResetPasswordController::request()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.PtEirWk" method="withContext"/>
+    </service>
+    <service id=".service_locator.qHpfPrp" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="passwordHasher" type="service_closure" id="security.user_password_hasher"/>
+        <argument key="translator" type="service_closure" id="translator.data_collector"/>
+      </argument>
+    </service>
+    <service id=".service_locator.qHpfPrp.App\Controller\ResetPasswordController::reset()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ResetPasswordController::reset()"/>
+      <argument>App\Controller\ResetPasswordController::reset()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.qHpfPrp" method="withContext"/>
+    </service>
+    <service id=".service_locator.3QECKYg" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
+      </argument>
+    </service>
+    <service id=".service_locator.3QECKYg.App\Controller\SecurityController::login()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\SecurityController::login()"/>
+      <argument>App\Controller\SecurityController::login()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.3QECKYg" method="withContext"/>
+    </service>
+    <service id=".service_locator.lIxkgIF" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -8540,9 +8650,11 @@
         <argument key="App\Controller\LivreController::show" type="service_closure" id=".service_locator.21cI76b.App\Controller\LivreController::show()"/>
         <argument key="App\Controller\LivreController::create" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\LivreController::create()"/>
         <argument key="App\Controller\LivreController::edit" type="service_closure" id=".service_locator.CGpsD3F.App\Controller\LivreController::edit()"/>
-        <argument key="App\Controller\LoginController::login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\LoginController::login()"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.KAWHxDW.App\Controller\RegistrationController::register()"/>
-        <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
+        <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.vPVKT.B.App\Controller\RegistrationController::verifyUserEmail()"/>
+        <argument key="App\Controller\ResetPasswordController::request" type="service_closure" id=".service_locator.PtEirWk.App\Controller\ResetPasswordController::request()"/>
+        <argument key="App\Controller\ResetPasswordController::reset" type="service_closure" id=".service_locator.qHpfPrp.App\Controller\ResetPasswordController::reset()"/>
+        <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\SecurityController::login()"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
         <argument key="App\Controller\CategoriesController:index" type="service_closure" id=".service_locator.BWSQ.0S.App\Controller\CategoriesController::index()"/>
@@ -8555,9 +8667,11 @@
         <argument key="App\Controller\LivreController:show" type="service_closure" id=".service_locator.21cI76b.App\Controller\LivreController::show()"/>
         <argument key="App\Controller\LivreController:create" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\LivreController::create()"/>
         <argument key="App\Controller\LivreController:edit" type="service_closure" id=".service_locator.CGpsD3F.App\Controller\LivreController::edit()"/>
-        <argument key="App\Controller\LoginController:login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\LoginController::login()"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.KAWHxDW.App\Controller\RegistrationController::register()"/>
-        <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
+        <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.vPVKT.B.App\Controller\RegistrationController::verifyUserEmail()"/>
+        <argument key="App\Controller\ResetPasswordController:request" type="service_closure" id=".service_locator.PtEirWk.App\Controller\ResetPasswordController::request()"/>
+        <argument key="App\Controller\ResetPasswordController:reset" type="service_closure" id=".service_locator.qHpfPrp.App\Controller\ResetPasswordController::reset()"/>
+        <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\SecurityController::login()"/>
       </argument>
     </service>
     <service id=".service_locator.ea.H0ae" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8737,12 +8851,14 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.bV8NojX" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.mrJaaaE" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\CategorieType" type="service_closure" id="App\Form\CategorieType"/>
+        <argument key="App\Form\ChangePasswordFormType" type="service_closure" id="App\Form\ChangePasswordFormType"/>
         <argument key="App\Form\LivreType" type="service_closure" id="App\Form\LivreType"/>
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
+        <argument key="App\Form\ResetPasswordRequestFormType" type="service_closure" id="App\Form\ResetPasswordRequestFormType"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="service_closure" id="form.type.file"/>
@@ -8875,11 +8991,12 @@
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.IICXA0h" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.hqyzhI8" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\CategoriesRepository" type="service_closure" id="App\Repository\CategoriesRepository"/>
         <argument key="App\Repository\LivreRepository" type="service_closure" id="App\Repository\LivreRepository"/>
+        <argument key="App\Repository\ResetPasswordRequestRepository" type="service_closure" id="App\Repository\ResetPasswordRequestRepository"/>
         <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
@@ -9157,21 +9274,21 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
-    <service id=".service_locator.ZyP9f7K.App\Controller\LoginController" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\LoginController"/>
-      <argument>App\Controller\LoginController</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
-    </service>
     <service id=".service_locator.ZyP9f7K.App\Controller\RegistrationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\RegistrationController"/>
       <argument>App\Controller\RegistrationController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
-    <service id=".service_locator.ZyP9f7K.App\Controller\TestController" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\TestController"/>
-      <argument>App\Controller\TestController</argument>
+    <service id=".service_locator.ZyP9f7K.App\Controller\ResetPasswordController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ResetPasswordController"/>
+      <argument>App\Controller\ResetPasswordController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+    </service>
+    <service id=".service_locator.ZyP9f7K.App\Controller\SecurityController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\SecurityController"/>
+      <argument>App\Controller\SecurityController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
@@ -9370,9 +9487,9 @@
           <argument>App\Controller\CategoriesController</argument>
           <argument>App\Controller\GammeController</argument>
           <argument>App\Controller\LivreController</argument>
-          <argument>App\Controller\LoginController</argument>
           <argument>App\Controller\RegistrationController</argument>
-          <argument>App\Controller\TestController</argument>
+          <argument>App\Controller\ResetPasswordController</argument>
+          <argument>App\Controller\SecurityController</argument>
           <argument>Doctrine\Bundle\DoctrineBundle\Controller\ProfilerController</argument>
         </argument>
       </call>
@@ -10298,7 +10415,7 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.MA4dmv9"/>
+      <argument type="service" id=".service_locator.ZBYOzv7"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -10388,6 +10505,7 @@
         <argument key="debug:firewall">security.command.debug_firewall</argument>
         <argument key="security:hash-password">security.command.user_password_hash</argument>
         <argument key="doctrine:fixtures:load">doctrine.fixtures_load_command</argument>
+        <argument key="reset-password:remove-expired">SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand</argument>
         <argument key="make:auth">maker.auto_command.make_auth</argument>
         <argument key="make:command">maker.auto_command.make_command</argument>
         <argument key="make:twig-component">maker.auto_command.make_twig_component</argument>
@@ -10420,7 +10538,7 @@
         <argument key="make:webhook">maker.auto_command.make_webhook</argument>
       </argument>
     </service>
-    <service id=".service_locator.MA4dmv9" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.ZBYOzv7" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
@@ -10511,6 +10629,7 @@
         <argument key="security.command.debug_firewall" type="service_closure" id=".security.command.debug_firewall.lazy"/>
         <argument key="security.command.user_password_hash" type="service_closure" id=".security.command.user_password_hash.lazy"/>
         <argument key="doctrine.fixtures_load_command" type="service_closure" id="doctrine.fixtures_load_command"/>
+        <argument key="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand" type="service_closure" id="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand"/>
         <argument key="maker.auto_command.make_auth" type="service_closure" id=".maker.auto_command.make_auth.lazy"/>
         <argument key="maker.auto_command.make_command" type="service_closure" id=".maker.auto_command.make_command.lazy"/>
         <argument key="maker.auto_command.make_twig_component" type="service_closure" id=".maker.auto_command.make_twig_component.lazy"/>
@@ -10779,8 +10898,8 @@
     <service id="Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface" alias="security.user_password_hasher"/>
     <service id="Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface" alias="security.user_authenticator"/>
     <service id="security.firewall" alias="debug.security.firewall"/>
-    <service id="security.user_providers" alias="security.user.provider.concrete.users_in_memory"/>
-    <service id="Symfony\Component\Security\Core\User\UserProviderInterface" alias="security.user.provider.concrete.users_in_memory"/>
+    <service id="security.user_providers" alias="security.user.provider.concrete.app_user_provider"/>
+    <service id="Symfony\Component\Security\Core\User\UserProviderInterface" alias="security.user.provider.concrete.app_user_provider"/>
     <service id="security.authentication.session_strategy.main" alias="security.authentication.session_strategy"/>
     <service id="Symfony\Component\Security\Http\RememberMe\RememberMeHandlerInterface" alias="security.authenticator.firewall_aware_remember_me_handler"/>
     <service id="security.user_checker.main" alias="security.user_checker"/>
@@ -10791,9 +10910,10 @@
     <service id="Knp\Component\Pager\PaginatorInterface" alias="knp_paginator"/>
     <service id="Knp\Component\Pager\ArgumentAccess\ArgumentAccessInterface" alias="Knp\Component\Pager\ArgumentAccess\RequestArgumentAccess"/>
     <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
+    <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.G5jyhjd"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.lIxkgIF"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10844,9 +10964,11 @@
     <service id=".service_locator.3WpcW23" alias=".service_locator.5Tyk8_y"/>
     <service id=".service_locator.D80i8Vb" alias=".service_locator.bWeTQZr"/>
     <service id=".service_locator.lEdGYvX" alias=".service_locator.21cI76b"/>
-    <service id=".service_locator.Nrz07Zz" alias=".service_locator.3QECKYg"/>
     <service id=".service_locator.113K_6l" alias=".service_locator.KAWHxDW"/>
-    <service id=".service_locator.l6GrDWv" alias=".service_locator.KHhLDTq"/>
+    <service id=".service_locator.yqU4mSg" alias=".service_locator.vPVKT.B"/>
+    <service id=".service_locator.GGNRYUI" alias=".service_locator.PtEirWk"/>
+    <service id=".service_locator.UnhqfR0" alias=".service_locator.qHpfPrp"/>
+    <service id=".service_locator.Nrz07Zz" alias=".service_locator.3QECKYg"/>
     <service id=".service_locator.9nvaCmp" alias=".service_locator.ZyP9f7K"/>
   </services>
 </container>
