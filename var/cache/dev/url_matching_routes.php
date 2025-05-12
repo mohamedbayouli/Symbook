@@ -17,7 +17,6 @@ return [
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/admin/categories' => [[['_route' => 'admin_categories', '_controller' => 'App\\Controller\\CategoriesController::index'], null, null, null, false, false, null]],
         '/admin/categories/create' => [[['_route' => 'admin_categories_create', '_controller' => 'App\\Controller\\CategoriesController::create'], null, null, null, false, false, null]],
-        '/gamme' => [[['_route' => 'app_gamme', '_controller' => 'App\\Controller\\GammeController::index'], null, null, null, false, false, null]],
         '/admin/livres' => [[['_route' => 'app_livre_all', '_controller' => 'App\\Controller\\LivreController::all'], null, null, null, false, false, null]],
         '/admin/livre/show2' => [[['_route' => 'app_livre_show2', '_controller' => 'App\\Controller\\LivreController::show2'], null, null, null, false, false, null]],
         '/admin/livre/show3' => [[['_route' => 'app_livre_show3', '_controller' => 'App\\Controller\\LivreController::show3'], null, null, null, false, false, null]],
@@ -28,6 +27,8 @@ return [
         '/reset-password/check-email' => [[['_route' => 'app_check_email', '_controller' => 'App\\Controller\\ResetPasswordController::checkEmail'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
+        '/user' => [[['_route' => 'app_user_index', '_controller' => 'App\\Controller\\UserController::index'], null, ['GET' => 0], null, false, false, null]],
+        '/user/new' => [[['_route' => 'app_user_new', '_controller' => 'App\\Controller\\UserController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -49,18 +50,20 @@ return [
                         .')'
                     .')'
                 .')'
-                .'|/a(?'
-                    .'|rticle/([^/]++)(*:222)'
-                    .'|dmin/(?'
-                        .'|categories/edit/([^/]++)(*:262)'
-                        .'|livre/(?'
-                            .'|delete/([^/]++)(*:294)'
-                            .'|show/([^/]++)(*:315)'
-                            .'|edit/([^/]++)(*:336)'
-                        .')'
+                .'|/admin/(?'
+                    .'|categories/edit/([^/]++)(*:236)'
+                    .'|livre/(?'
+                        .'|delete/([^/]++)(*:268)'
+                        .'|show/([^/]++)(*:289)'
+                        .'|edit/([^/]++)(*:310)'
                     .')'
                 .')'
-                .'|/reset\\-password/reset(?:/([^/]++))?(*:383)'
+                .'|/reset\\-password/reset(?:/([^/]++))?(*:356)'
+                .'|/user/([^/]++)(?'
+                    .'|(*:381)'
+                    .'|/edit(*:394)'
+                    .'|(*:402)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -72,13 +75,15 @@ return [
         168 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         181 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        222 => [[['_route' => 'app_article', '_controller' => 'App\\Controller\\ArticleController::lister'], ['nom'], null, null, false, true, null]],
-        262 => [[['_route' => 'admin_categories_edit', '_controller' => 'App\\Controller\\CategoriesController::edit'], ['id'], null, null, false, true, null]],
-        294 => [[['_route' => 'app_livre_delete', '_controller' => 'App\\Controller\\LivreController::delete'], ['id'], null, null, false, true, null]],
-        315 => [[['_route' => 'app_livre_show', '_controller' => 'App\\Controller\\LivreController::show'], ['id'], null, null, false, true, null]],
-        336 => [[['_route' => 'admin_livre_edit', '_controller' => 'App\\Controller\\LivreController::edit'], ['id'], null, null, false, true, null]],
-        383 => [
-            [['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null],
+        236 => [[['_route' => 'admin_categories_edit', '_controller' => 'App\\Controller\\CategoriesController::edit'], ['id'], null, null, false, true, null]],
+        268 => [[['_route' => 'app_livre_delete', '_controller' => 'App\\Controller\\LivreController::delete'], ['id'], null, null, false, true, null]],
+        289 => [[['_route' => 'app_livre_show', '_controller' => 'App\\Controller\\LivreController::show'], ['id'], null, null, false, true, null]],
+        310 => [[['_route' => 'admin_livre_edit', '_controller' => 'App\\Controller\\LivreController::edit'], ['id'], null, null, false, true, null]],
+        356 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
+        381 => [[['_route' => 'app_user_show', '_controller' => 'App\\Controller\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        394 => [[['_route' => 'app_user_edit', '_controller' => 'App\\Controller\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        402 => [
+            [['_route' => 'app_user_delete', '_controller' => 'App\\Controller\\UserController::delete'], ['id'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

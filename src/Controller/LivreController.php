@@ -14,14 +14,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class LivreController extends AbstractController{
     #[Route('admin/livre/delete/{id}', name: 'app_livre_delete')]
-    public function delete(EntityManagerInterface $em, Livre $livre): Response{
+    public function delete(EntityManagerInterface $em, Livre $livre)
+    {
         
         if (!$livre){
             throw $this->createNotFoundException('Livre de l\'id  {$livre->getId()} non trouvé');
         }
         $em->remove($livre);
         $em->flush();
-       dd($livre);
+        $this->redirectToRoute('app_livre_all');
     }
     #[Route('admin/livres', name: 'app_livre_all')]
 
