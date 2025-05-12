@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1>Panier</h1>
+                {% if data|length > 0 %}
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Livre</th>
+                                <th>Prix unitaire</th>
+                                <th>Quantité</th>
+                                <th>Total</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for element in data %}
+                                {% if element.livre != null %}
+                                    <tr>
+                                        <td>{{ element.livre.titre }}</td>
+                                        <td class="unit-price">{{ element.livre.prix }} dt</td>
+                                        <td>
+                                            <form action="{{ path('cart_update', {'id': element.livre.id}  ) }}" method="post" class="d-flex">
+                                                <input type="number" name="quantity" value="{{ panier[element.livre.id] ?? 1 }}" min="1" class="form-control quantity-input" style="width: 80px" data-livre-id="{{ element.livre.id }}">
+                                            </form>
+                                        </td>
+                                        <td class="total-price" data-livre-id="{{ element.livre.id }}">
+                                            {{ (element.livre.prix * element.quantity) }} dt
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('cart_remove', {'id': element.livre.id}) }}" class="btn btn-danger btn-sm">
+                                                <i class="bi bi-trash"></i> Supprimer
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            <tr class="table-primary">
+                                <td colspan="3" class="text-end"><strong>Total général</strong></td>
+                                <td colspan="2">
+                                    {% set total = 0 %}
+                                    {% for element in data %}
+                                        {% if element.livre != null %}
+                                            {% set total = total + (element.livre.prix * (panier[element.livre.id] ?? 1)) %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <strong id="global-total">{{ total }} dt</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-end">
+                        <a href="{{ path('cart_commander') }}" class="btn btn-success btn-lg">
+                            <i class="bi bi-check-circle"></i> Valider la commande
+                        </a>
+                    </div>
+                        <a href="{{ path('app_livre_all') }}" class="btn btn-primary">
+                        <i class="bi bi-book"></i> Voir les livres disponibles
+                    </a>
+                {% else %}
+                    <div class="alert alert-info">
+                        Votre panier est vide.
+                    </div>
+                        <a href="{{ path('app_livre_all') }}" class="btn btn-primary">
+                        <i class="bi bi-book"></i> Voir les livres disponibles
+                    </a>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            
+            quantityInputs.forEach(input => {
+
+                input.addEventListener('change', function() {
+                    updatePrice(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    updatePrice(this);
+                });
+            });
+            
+            function updatePrice(inputElement) {
+                const livreId = inputElement.dataset.livreId;
+                const quantity = inputElement.value;
+                const unitPriceElement = inputElement.closest('tr').querySelector('.unit-price');
+                const totalPriceElement = inputElement.closest('tr').querySelector('.total-price');
+                
+                const unitPrice = parseFloat(unitPriceElement.textContent.replace(' dt', ''));
+                
+                const newTotal = unitPrice * quantity;
+                
+                totalPriceElement.textContent = newTotal.toFixed(2) + ' dt';
+                
+                fetch(`/cart/update/${livreId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: `quantity=${quantity}`
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        console.error('Erreur lors de la mise à jour du panier');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                });
+                
+                updateGlobalTotal();
+            }
+            
+            function updateGlobalTotal() {
+                let globalTotal = 0;
+                const totalPriceElements = document.querySelectorAll('.total-price');
+                
+                totalPriceElements.forEach(element => {
+                    const priceText = element.textContent.replace(' dt', '');
+                    globalTotal += parseFloat(priceText);
+                });
+                
+                document.getElementById('global-total').textContent = globalTotal.toFixed(2) + ' dt';
+            }
+        });
+    </script>
+{% endblock %}

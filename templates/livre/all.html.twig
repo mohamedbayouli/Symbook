@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Admin : les livres{% endblock %}
+
+{% block body %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Editeur</th>
+                <th>Date Edition</th>
+                <th>Prix</th>
+                <th>Categorie</th>
+                <th colspan="3">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for livres in livre %}
+                <tr>
+                    <td>{{ livres.titre }}</td>
+                    <td>{{ livres.editeur }}</td>
+                    <td>{{ livres.dateEdition|date('d/m/Y') }}</td>
+                    <td>{{ livres.prix }}</td>
+                    <td>{{ livres.cat.libelle}}</td>
+                    <td>
+                        <a href="{{ path('app_livre_show', {'id': livres.id}) }}">Voir Detail...</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('app_livre_delete', {'id': livres.id}) }}">Supprimer</a>
+                    </td>
+                    <td>
+                        <a href="#">Editer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation">
+    {{ knp_pagination_render(livre) }}
+</div>
+
+{% endblock %}
