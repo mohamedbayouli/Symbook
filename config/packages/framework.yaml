@@ -4,7 +4,8 @@ framework:
 
     # Note that the session will be started ONLY if you read or write from it.
     session: true
-
+    router:
+        default_uri: 'http://127.0.0.1:8000'
     #esi: true
     #fragments: true
 

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Admin : les livres{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {% for livre in livre %}
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <img src="{{ livre.image }}" class="card-img-top" alt="{{ livre.titre }}">
+                            <h5 class="card-title">{{ livre.titre }}</h5>
+                            <p class="card-text">
+                                <strong>Editeur:</strong> {{ livre.editeur }}<br>
+                                <strong>Date Edition:</strong> {{ livre.dateEdition|date('d/m/Y') }}<br>
+                                <strong>Prix:</strong> {{ livre.prix }}<br>
+                                <strong>Catégorie:</strong> {{ livre.cat.libelle }}<br
+                                <strong><a href="{{ path('user_livre_show', {'id': livre.id}) }}" class="btn btn-primary">Voir Detail...</a></strong>
+                                <strong><a href="{{ path('cart_add',{id:livre.id}) }}" class="btn btn-success">Ajouter au panier</a></strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="navigation">
+        {{ knp_pagination_render(livre) }}
+    </div>
+{% endblock %}

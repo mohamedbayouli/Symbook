@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LivreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -39,7 +41,21 @@ class Livre
     private ?string $isbn = null;
 
     #[ORM\ManyToOne(inversedBy: 'livres')]
-    private ?Categories $cat = null;                         
+    private ?Categories $cat = null;
+
+    /**
+     * @var Collection<int, CommandeLivre>
+     */
+    #[ORM\OneToMany(targetEntity: CommandeLivre::class, mappedBy: 'livre')]
+    private Collection $commandeLivres;
+
+    #[ORM\Column]
+    private ?int $qte = null;
+
+    public function __construct()
+    {
+        $this->commandeLivres = new ArrayCollection();
+    }                         
 
     public function getId(): ?int
     {
@@ -150,6 +166,48 @@ class Livre
     public function setCat(?Categories $cat): static
     {
         $this->cat = $cat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CommandeLivre>
+     */
+    public function getCommandeLivres(): Collection
+    {
+        return $this->commandeLivres;
+    }
+
+    public function addCommandeLivre(CommandeLivre $commandeLivre): static
+    {
+        if (!$this->commandeLivres->contains($commandeLivre)) {
+            $this->commandeLivres->add($commandeLivre);
+            $commandeLivre->setLivre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandeLivre(CommandeLivre $commandeLivre): static
+    {
+        if ($this->commandeLivres->removeElement($commandeLivre)) {
+            // set the owning side to null (unless already changed)
+            if ($commandeLivre->getLivre() === $this) {
+                $commandeLivre->setLivre(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getQte(): ?int
+    {
+        return $this->qte;
+    }
+
+    public function setQte(int $qte): static
+    {
+        $this->qte = $qte;
 
         return $this;
     }
