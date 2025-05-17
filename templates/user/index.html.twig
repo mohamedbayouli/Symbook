@@ -19,6 +19,7 @@
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email</th>
+                                <th>Roles</th>
                                 <th>Birth Date</th>
                                 <th class="text-end">Actions</th>
                             </tr>
@@ -31,6 +32,11 @@
                                         <td>{{ user.prenom }}</td>
                                         <td>{{ user.nom }}</td>
                                         <td>{{ user.email }}</td>
+                                        <td>
+                                            {% for role in user.roles %}
+                                                <span class="badge bg-secondary">{{ role|replace({'ROLE_': ''}) }}</span>
+                                            {% endfor %}
+                                        </td>
                                         <td>{{ user.dateDeNaissance ? user.dateDeNaissance|date('d/m/Y') : 'N/A' }}</td>
                                         <td class="text-end">
                                             <div class="btn-group" role="group">
