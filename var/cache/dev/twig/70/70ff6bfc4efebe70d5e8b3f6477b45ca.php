@@ -155,6 +155,6 @@ class __TwigTemplate_5b2b0efa071b803307cd7b8f17b2683a extends Template
     </p>
     <p>If you don't receive an email please check your spam folder or <a href=\"{{ path('app_forgot_password_request') }}\">try again</a>.</p>
 {% endblock %}
-", "reset_password/check_email.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\reset_password\\check_email.html.twig");
+", "reset_password/check_email.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\reset_password\\check_email.html.twig");
     }
 }

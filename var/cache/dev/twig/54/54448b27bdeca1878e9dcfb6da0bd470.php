@@ -248,6 +248,6 @@ class __TwigTemplate_07b9084fdab0a1f8f2f00e2a9f969f8b extends Template
 </div>
 
 {% endblock %}
-", "livre/all.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\livre\\all.html.twig");
+", "livre/all.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\livre\\all.html.twig");
     }
 }

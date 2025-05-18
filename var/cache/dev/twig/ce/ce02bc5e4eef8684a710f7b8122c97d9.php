@@ -381,6 +381,6 @@ class __TwigTemplate_322ee279fcf6258574cf1b82b0f5e0ad extends Template
             white-space: nowrap;
         }
     </style>
-{% endblock %}", "user/index.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\user\\index.html.twig");
+{% endblock %}", "user/index.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\user\\index.html.twig");
     }
 }

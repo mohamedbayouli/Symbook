@@ -192,6 +192,6 @@ class __TwigTemplate_a5c580945b42ae381f63c928ecc2cfdc extends Template
         {% endfor %}
    </table>
 {% endblock %}
- ", "categories/index.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\categories\\index.html.twig");
+ ", "categories/index.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\categories\\index.html.twig");
     }
 }

@@ -500,6 +500,6 @@ class __TwigTemplate_2c6b508f0c62983fb53f742e6b52d553 extends Template
                 });
         }
     </script>
-{% endblock %}", "sales/index.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\sales\\index.html.twig");
+{% endblock %}", "sales/index.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\sales\\index.html.twig");
     }
 }

@@ -181,6 +181,6 @@ class __TwigTemplate_f3dbc18d8adb5d3f2fb0c96ac91b3ca8 extends Template
     <h4>ISBN: {{ livre.isbn }}</h4>
     <p>{{ livre.resume }}</p>
 {% endblock %}
-", "livre/show.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\livre\\show.html.twig");
+", "livre/show.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\livre\\show.html.twig");
     }
 }

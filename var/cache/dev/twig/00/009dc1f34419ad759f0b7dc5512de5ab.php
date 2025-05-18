@@ -32,6 +32,7 @@ class __TwigTemplate_b400229ebe853736f89c5139e6e82bfa extends Template
         $this->blocks = [
             'title' => [$this, 'block_title'],
             'body' => [$this, 'block_body'],
+            'stylesheets' => [$this, 'block_stylesheets'],
         ];
     }
 
@@ -73,7 +74,7 @@ class __TwigTemplate_b400229ebe853736f89c5139e6e82bfa extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        yield "User";
+        yield "User Management";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -97,79 +98,123 @@ class __TwigTemplate_b400229ebe853736f89c5139e6e82bfa extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "    <h1>User</h1>
+        yield "    <div class=\"container mt-4\">
+        <div class=\"d-flex justify-content-between align-items-center mb-4\">
+            <h1 class=\"mb-0\">User Management</h1>
+           
+        </div>
 
-    <table class=\"table\">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>";
-        // line 12
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 12, $this->source); })()), "id", [], "any", false, false, false, 12), "html", null, true);
-        yield "</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>";
-        // line 16
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 16, $this->source); })()), "email", [], "any", false, false, false, 16), "html", null, true);
-        yield "</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>";
-        // line 20
-        yield ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 20, $this->source); })()), "roles", [], "any", false, false, false, 20)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(json_encode(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 20, $this->source); })()), "roles", [], "any", false, false, false, 20)), "html", null, true)) : (""));
-        yield "</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>";
-        // line 24
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 24, $this->source); })()), "password", [], "any", false, false, false, 24), "html", null, true);
-        yield "</td>
-            </tr>
-            <tr>
-                <th>IsVerified</th>
-                <td>";
-        // line 28
-        yield ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 28, $this->source); })()), "isVerified", [], "any", false, false, false, 28)) ? ("Yes") : ("No"));
-        yield "</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>";
-        // line 32
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 32, $this->source); })()), "nom", [], "any", false, false, false, 32), "html", null, true);
-        yield "</td>
-            </tr>
-            <tr>
-                <th>Date_de_naissance</th>
-                <td>";
-        // line 36
-        yield ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 36, $this->source); })()), "dateDeNaissance", [], "any", false, false, false, 36)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 36, $this->source); })()), "dateDeNaissance", [], "any", false, false, false, 36), "Y-m-d"), "html", null, true)) : (""));
-        yield "</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>";
-        // line 40
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 40, $this->source); })()), "prenom", [], "any", false, false, false, 40), "html", null, true);
-        yield "</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href=\"";
-        // line 45
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_user_index");
-        yield "\">back to list</a>
-
-    <a href=\"";
+        <div class=\"card shadow-sm\">
+            <div class=\"card-body\">
+                <div class=\"table-responsive\">
+                    <table class=\"table table-hover\">
+                        <thead class=\"thead-light\">
+                            <tr>
+                                <th>ID</th>
+                                <th>date commande</th>
+                                <th>status</th>
+                                <th>total</th>
+                                <th class=\"text-end\">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ";
+        // line 26
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["commande"]) || array_key_exists("commande", $context) ? $context["commande"] : (function () { throw new RuntimeError('Variable "commande" does not exist.', 26, $this->source); })()));
+        $context['_iterated'] = false;
+        foreach ($context['_seq'] as $context["_key"] => $context["user"]) {
+            // line 27
+            yield "                                    <tr>
+                                        <td>";
+            // line 28
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 28), "html", null, true);
+            yield "</td>
+                                        <td>";
+            // line 29
+            yield ((CoreExtension::getAttribute($this->env, $this->source, $context["user"], "datecommande", [], "any", false, false, false, 29)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["user"], "datecommande", [], "any", false, false, false, 29), "d/m/Y"), "html", null, true)) : ("N/A"));
+            yield "</td>
+                                        <td>";
+            // line 30
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["user"], "status", [], "any", false, false, false, 30), "html", null, true);
+            yield "</td>
+                                        <td>";
+            // line 31
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["user"], "total", [], "any", false, false, false, 31), "html", null, true);
+            yield "</td>
+                                        
+                                        
+                                        <td class=\"text-end\">
+                                            <div class=\"btn-group\" role=\"group\">
+                                                <a href=\"";
+            // line 36
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_dommande_detail", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 36)]), "html", null, true);
+            yield "\" class=\"btn btn-sm btn-info\" title=\"View Orders\">
+                                                    <i class=\"fas fa-list\"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            ";
+            $context['_iterated'] = true;
+        }
+        // line 46
+        if (!$context['_iterated']) {
+            // line 43
+            yield "                                <tr>
+                                    <td colspan=\"6\" class=\"text-center text-muted py-4\">0 commande effectué</td>
+                                </tr>
+                            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_key'], $context['user'], $context['_parent'], $context['_iterated']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
         // line 47
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_user_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 47, $this->source); })()), "id", [], "any", false, false, false, 47)]), "html", null, true);
-        yield "\">edit</a>
+        yield "                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 55
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_stylesheets(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        // line 56
+        yield "    ";
+        yield from $this->yieldParentBlock("stylesheets", $context, $blocks);
+        yield "
+    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css\">
+    <style>
+        .btn-group .btn {
+            margin-right: 5px;
+        }
+        .btn-group .btn:last-child {
+            margin-right: 0;
+        }
+        .table th {
+            white-space: nowrap;
+        }
+    </style>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -201,60 +246,79 @@ class __TwigTemplate_b400229ebe853736f89c5139e6e82bfa extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  170 => 47,  165 => 45,  157 => 40,  150 => 36,  143 => 32,  136 => 28,  129 => 24,  122 => 20,  115 => 16,  108 => 12,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  203 => 56,  190 => 55,  173 => 47,  164 => 43,  162 => 46,  151 => 36,  143 => 31,  139 => 30,  135 => 29,  131 => 28,  128 => 27,  123 => 26,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}User Management{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <div class=\"container mt-4\">
+        <div class=\"d-flex justify-content-between align-items-center mb-4\">
+            <h1 class=\"mb-0\">User Management</h1>
+           
+        </div>
 
-    <table class=\"table\">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>IsVerified</th>
-                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ user.nom }}</td>
-            </tr>
-            <tr>
-                <th>Date_de_naissance</th>
-                <td>{{ user.dateDeNaissance ? user.dateDeNaissance|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ user.prenom }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href=\"{{ path('app_user_index') }}\">back to list</a>
-
-    <a href=\"{{ path('app_user_edit', {'id': user.id}) }}\">edit</a>
-
+        <div class=\"card shadow-sm\">
+            <div class=\"card-body\">
+                <div class=\"table-responsive\">
+                    <table class=\"table table-hover\">
+                        <thead class=\"thead-light\">
+                            <tr>
+                                <th>ID</th>
+                                <th>date commande</th>
+                                <th>status</th>
+                                <th>total</th>
+                                <th class=\"text-end\">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in commande %}
+                                    <tr>
+                                        <td>{{ user.id }}</td>
+                                        <td>{{ user.datecommande ? user.datecommande|date('d/m/Y') : 'N/A' }}</td>
+                                        <td>{{ user.status }}</td>
+                                        <td>{{ user.total }}</td>
+                                        
+                                        
+                                        <td class=\"text-end\">
+                                            <div class=\"btn-group\" role=\"group\">
+                                                <a href=\"{{ path('app_dommande_detail', {'id': user.id}) }}\" class=\"btn btn-sm btn-info\" title=\"View Orders\">
+                                                    <i class=\"fas fa-list\"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan=\"6\" class=\"text-center text-muted py-4\">0 commande effectué</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
-", "user/show.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\user\\show.html.twig");
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css\">
+    <style>
+        .btn-group .btn {
+            margin-right: 5px;
+        }
+        .btn-group .btn:last-child {
+            margin-right: 0;
+        }
+        .table th {
+            white-space: nowrap;
+        }
+    </style>
+{% endblock %}", "user/show.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\user\\show.html.twig");
     }
 }

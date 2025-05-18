@@ -258,6 +258,6 @@ class __TwigTemplate_03ceac73c2e152f46a76583c13c3f081 extends Template
             border-radius: 10px 10px 0 0 !important;
         }
     </style>
-{% endblock %}", "user/edit.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\user\\edit.html.twig");
+{% endblock %}", "user/edit.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\user\\edit.html.twig");
     }
 }

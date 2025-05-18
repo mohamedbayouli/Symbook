@@ -175,6 +175,6 @@ class __TwigTemplate_e4c733d2aa43d6998ab81635a0a9fee4 extends Template
     </div>
 </div>
 {% endblock %}
-", "livre/edit.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\livre\\edit.html.twig");
+", "livre/edit.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\livre\\edit.html.twig");
     }
 }
