@@ -27,4 +27,23 @@ class CommandeController extends AbstractController
             'commande' => $commande,
         ]);
     }
+    
+    #[Route('/user/commandes', name: 'user_commandes')]
+    public function userindex(CommandeRepository $commandeRepository): Response
+    {
+
+        $commandes = $commandeRepository->findBy(['user' => $this->getUser()]);
+
+        return $this->render('commande/index.html.twig', [
+            'commandes' => $commandes,
+        ]);
+    }
+
+    #[Route('/user/commande/{id}', name: 'user_commande_show')]
+    public function usershow(Commande $commande): Response
+    {
+        return $this->render('commande/show.html.twig', [
+            'commande' => $commande,
+        ]);
+    }
 }
