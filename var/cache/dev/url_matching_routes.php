@@ -91,8 +91,7 @@ return [
                     .')'
                     .'|cancel/([^/]++)(*:635)'
                 .')'
-                .'|/verify\\-payment/([^/]++)(*:669)'
-                .'|/reset\\-password/reset(?:/([^/]++))?(*:713)'
+                .'|/reset\\-password/reset(?:/([^/]++))?(*:680)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -121,8 +120,7 @@ return [
         588 => [[['_route' => 'app_paiement_stripe', '_controller' => 'App\\Controller\\PaymentController::stripePayment'], ['id'], null, null, false, true, null]],
         611 => [[['_route' => 'app_paiement_success', '_controller' => 'App\\Controller\\PaymentController::success'], ['id'], null, null, false, true, null]],
         635 => [[['_route' => 'app_paiement_cancel', '_controller' => 'App\\Controller\\PaymentController::cancel'], ['id'], null, null, false, true, null]],
-        669 => [[['_route' => 'app_verify_payment', '_controller' => 'App\\Controller\\PaymentController::verifyPayment'], ['token'], null, null, false, true, null]],
-        713 => [
+        680 => [
             [['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
