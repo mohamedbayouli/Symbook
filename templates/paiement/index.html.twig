@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement - Commande #{{ commande.id }}{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Paiement de la commande #{{ commande.id }}</h1>
+    
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Récapitulatif</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for ligne in commande.commandeLivres %}
+                            <li class="list-group-item">
+                                {{ ligne.livre.titre }} (x{{ ligne.quantite }}) - {{ ligne.livre.prix * ligne.quantite }} €
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <hr>
+                    <h4 class="text-end">Total : {{ commande.total }} €</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Choisissez un paiement</div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                        <div class="card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h4>Choisissez votre mode de paiement</h4>
+                            </div>
+                            <div class="card-body">
+                                {{ form_row(form.methode) }}
+                            </div>
+                        </div>
+                        
+                        <div class="text-end">
+                            {{ form_row(form.valider) }}
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

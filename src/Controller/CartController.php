@@ -21,6 +21,8 @@ class CartController extends AbstractController
     public function index(SessionInterface $session, LivreRepository $livresRepository)
     {
         $panier = $session->get('panier', []);
+
+        //dd('Current cart contents:', $panier);
         
         $data=[];
 
@@ -62,6 +64,8 @@ class CartController extends AbstractController
     public function commander(SessionInterface $session, LivreRepository $livresRepository, EntityManagerInterface $em): Response
     {
         $panier = $session->get('panier', []);
+
+        //dd($panier);
         
         if (empty($panier)) {
             $this->addFlash('error', 'Votre panier est vide');
@@ -71,6 +75,7 @@ class CartController extends AbstractController
         $commande = new Commande();
         $commande->setDateCommande(new \DateTime());
         $commande->setStatus('en attente');
+        $commande->setUser($this->getUser());
         
         $total = 0;
         
@@ -93,27 +98,30 @@ class CartController extends AbstractController
         $em->persist($commande);
         $em->flush();
         
-        $session->set('panier', []);
-        
+        /*$session->set('panier', []);
         $this->addFlash('success', 'Votre commande a été passée avec succès');
-        return $this->redirectToRoute('app_livre_all');
+        return $this->redirectToRoute('user_livre_all');*/
+        
+        return $this->redirectToRoute('app_paiement', ['id' => $commande->getId()]);
     }
 
     #[Route('/user/cart/update/{id}', name: 'cart_update', methods: ['POST'])]
     public function update(Request $request, Livre $livre, SessionInterface $session): Response
     {
-        $quantity = $request->request->getInt('quantity', 1);
+        $quantity = $request->request->get('quantity');
         $id = $livre->getId();
         $panier = $session->get('panier', []);
 
         if ($quantity > 0) {
-            $panier[$id] = $quantity;
+            $panier[$id] = (int)$quantity;
 
         } else {
             unset($panier[$id]);
         }
 
         $session->set('panier', $panier);
+
+        dump($session->get('panier'));
 
         if ($request->isXmlHttpRequest()) {
             return $this->json([

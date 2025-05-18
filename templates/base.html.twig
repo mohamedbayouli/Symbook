@@ -7,10 +7,27 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         <link rel="stylesheet" href="{{asset('bootstrap.min (4).css')}}">
         {% block stylesheets %}
+        <style>
+            .flash-message {
+                transition: opacity 0.5s ease;
+            }
+          </style>
         {% endblock %}
 
         {% block javascripts %}
-
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(function() {
+                        var messages = document.querySelectorAll('.flash-message');
+                        messages.forEach(function(message) {
+                            message.style.opacity = '0';
+                            setTimeout(function() {
+                                message.remove();
+                            }, 500); // matches the transition time
+                        });
+                    }, 3000);
+                });
+            </script>
         {% endblock %}
     </head>
     <body>
@@ -33,6 +50,11 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ path('admin_categories') }}">
             <i class="fas fa-tags me-1"></i>catégories
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_commandes') }}">
+            <i class="fas fa-info-circle me-1"></i>Les Commandes
           </a>
         </li>
         <li class="nav-item">
@@ -94,7 +116,7 @@
 
         {% if app.user %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('app_commandes') }}">
+          <a class="nav-link" href="{{ path('user_commandes') }}">
             <i class="fas fa-info-circle me-1"></i>Mes Commandes
           </a>
         </li>
@@ -138,7 +160,7 @@
      <div class="container mt-3">
     
         {% for label, messages in app.flashes %}
-            <div class="alert alert-{{ label }}">
+            <div class="alert alert-{{ label }} flash-message">
                 {% for message in messages %}
                     {{ message }}
                 {% endfor %}

@@ -13,6 +13,15 @@ use App\Form\CategorieType;
 use Symfony\Component\HttpFoundation\Request;
 
 final class CategoriesController extends AbstractController{
+    #[Route('user/categories', name: 'user_categories')]
+    public function userindex(CategoriesRepository $rep): Response
+    {
+        $categories = $rep->findAll();
+        return $this->render('categories/index.html.twig', [
+            'categories' => $categories,
+        ]);
+    }
+    
     #[Route('admin/categories', name: 'admin_categories')]
     public function index(CategoriesRepository $rep): Response
     {

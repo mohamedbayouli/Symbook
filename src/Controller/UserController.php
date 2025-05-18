@@ -4,12 +4,17 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Entity\Commande;
 use App\Repository\UserRepository;
+use App\Entity\ResetPasswordRequest;
+use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CommandeLivreRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\ResetPasswordRequestRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/user')]
 final class UserController extends AbstractController{
@@ -42,14 +47,22 @@ final class UserController extends AbstractController{
     }
 
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(User $user): Response
+    public function show(User $user,CommandeRepository $comrep): Response
     {
-        
+
+        $commande=$comrep->findBy(['user'=>$user]);
         return $this->render('user/show.html.twig', [
-            'user' => $user,
+            'commande' => $commande,
         ]);
     }
-
+#[Route('/commande/{id}', name: 'app_dommande_detail', methods: ['GET'])]
+    public function show2(Commande $commande,CommandeLivreRepository $comrep): Response
+    {
+       $livre=$comrep->findBy(['commande'=>$commande]);
+        return $this->render('user/show2.html.twig', [
+            'commande' => $livre,
+        ]);
+    }
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
@@ -69,10 +82,24 @@ final class UserController extends AbstractController{
     }
 
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
-    public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, User $user, EntityManagerInterface $entityManager,ResetPasswordRequestRepository $rep): Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->getPayload()->getString('_token'))) {
+            $commande=$user->getCommandes();
+            foreach ($commande as $com){
+                $entityManager->remove($com);
+            }
+          
+
+    
+    $resetPassword = $rep->findOneBy(['user' => $user]);
+
+if ($resetPassword !== null) {
+    $entityManager->remove($resetPassword);
+}
+            
             $entityManager->remove($user);
+
             $entityManager->flush();
         }
 
