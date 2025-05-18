@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoriesController!{% endblock %}
+
+{% block body %}
+ <h1>Liste des categories</h1>
+    
+    <a href="{{path('admin_categories_create')}}" class="btn btn-primary xl">Ajouter une nouvelle categorie</a>
+    <table>
+        {% for cat in categories %}
+            <tr>
+                <td>{{ cat.libelle }}</td>
+                <td>
+                 <a href="{{path('admin_categories_edit',{'id': cat.id })}}" class="btn btn-primary ">editer</a> 
+                 </td>
+                 <td>
+                    <a href="#" class ="btn btn-warning ">Voir Detail</a>
+                    </td>
+            </tr>
+           
+        {% endfor %}
+   </table>
+{% endblock %}
+ 

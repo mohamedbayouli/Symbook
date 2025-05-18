@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test Payment Gateway{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h3>🌐 **Payment Gateway**</h3>
+        </div>
+        <div class="card-body">
+            <p class="lead">
+                <strong>Order #{{ commande.id }}</strong> | 
+                Total: <strong>{{ commande.total }} €</strong> |
+                Method: <strong>{{ method|upper }}</strong>
+            </p>
+            <hr>
+            
+            <div class="d-flex gap-2 mt-4">
+                <a href="{{ success_url }}" class="btn btn-success">
+                    ✅ confirmation
+                </a>
+                <a href="{{ cancel_url }}" class="btn btn-danger">
+                    ❌ cancel
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

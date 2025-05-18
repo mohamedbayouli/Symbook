@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Payment Cancelled{% endblock %}
+
+{% block body %}
+<div class="container text-center mt-5">
+    <h1 class="text-danger">❌ Paiement annulé</h1>
+    <p class="lead">Votre commande <strong>#{{ commande.id }}</strong> n'a pas été payée.</p>
+    <a href="{{ path('app_paiement', {'id': commande.id}) }}" class="btn btn-warning">Réessayer le paiement</a>
+    <a href="{{ path('user_livre_all') }}" class="btn btn-primary">Retour à l'accueil</a>
+</div>
+{% endblock %}

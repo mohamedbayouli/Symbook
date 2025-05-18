@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Commandes{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Historique des Commandes</h1>
+
+        {% if commandes|length > 0 %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Numéro</th>
+                        <th>Date</th>
+                        <th>Statut</th>
+                        <th>Total</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for commande in commandes %}
+                        <tr>
+                            <td>{{ commande.id }}</td>
+                            <td>{{ commande.dateCommande|date('d/m/Y H:i') }}</td>
+                            <td>
+                                <span class="badge 
+                                    {% if commande.status == 'validée' %}bg-success
+                                    {% elseif commande.status == 'annulée' %}bg-danger
+                                    {% else %}bg-warning{% endif %}">
+                                    {{ commande.status }}
+                                </span>
+                            </td>
+                            <td>{{ commande.total }} dt</td>
+                            <td>
+                                <a href="{{ path('user_commande_show', {'id': commande.id}) }}" 
+                                   class="btn btn-sm btn-primary">
+                                    Détails
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="alert alert-info">
+                Vous n'avez aucune commande pour le moment.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
