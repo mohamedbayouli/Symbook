@@ -550,7 +550,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator..X.wR3k"/>
+      <argument type="service" id=".service_locator.5wG_kQI"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3689,7 +3689,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator..X.wR3k"/>
+      <argument type="service" id=".service_locator.5wG_kQI"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -8751,26 +8751,19 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ikQfIPI" method="withContext"/>
     </service>
-    <service id=".service_locator.rFA2RGL" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.J_laEB8" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="commande" type="service_closure" id=".errored..service_locator.rFA2RGL.App\Entity\Commande"/>
+        <argument key="commande" type="service_closure" id=".errored..service_locator.J_laEB8.App\Entity\Commande"/>
         <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="mailer" type="service_closure" id="mailer.mailer"/>
-        <argument key="urlGenerator" type="service_closure" id="router.default"/>
       </argument>
     </service>
-    <service id=".service_locator.rFA2RGL.App\Controller\PaymentController::success()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.J_laEB8.App\Controller\PaymentController::success()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\PaymentController::success()"/>
       <argument>App\Controller\PaymentController::success()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.rFA2RGL" method="withContext"/>
-    </service>
-    <service id=".service_locator.Kq27LHM.App\Controller\PaymentController::verifyPayment()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\PaymentController::verifyPayment()"/>
-      <argument>App\Controller\PaymentController::verifyPayment()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.Kq27LHM" method="withContext"/>
+      <factory service=".service_locator.J_laEB8" method="withContext"/>
     </service>
     <service id=".service_locator.ikQfIPI.App\Controller\PaymentController::cancel()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\PaymentController::cancel()"/>
@@ -8925,7 +8918,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.tHh5lD8" method="withContext"/>
     </service>
-    <service id=".service_locator..X.wR3k" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.5wG_kQI" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -8953,8 +8946,7 @@
         <argument key="App\Controller\LivreController::create" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\LivreController::create()"/>
         <argument key="App\Controller\PaymentController::index" type="service_closure" id=".service_locator.jJdX_Na.App\Controller\PaymentController::index()"/>
         <argument key="App\Controller\PaymentController::stripePayment" type="service_closure" id=".service_locator.ikQfIPI.App\Controller\PaymentController::stripePayment()"/>
-        <argument key="App\Controller\PaymentController::success" type="service_closure" id=".service_locator.rFA2RGL.App\Controller\PaymentController::success()"/>
-        <argument key="App\Controller\PaymentController::verifyPayment" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\PaymentController::verifyPayment()"/>
+        <argument key="App\Controller\PaymentController::success" type="service_closure" id=".service_locator.J_laEB8.App\Controller\PaymentController::success()"/>
         <argument key="App\Controller\PaymentController::cancel" type="service_closure" id=".service_locator.ikQfIPI.App\Controller\PaymentController::cancel()"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.KAWHxDW.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.vPVKT.B.App\Controller\RegistrationController::verifyUserEmail()"/>
@@ -8991,8 +8983,7 @@
         <argument key="App\Controller\LivreController:create" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\LivreController::create()"/>
         <argument key="App\Controller\PaymentController:index" type="service_closure" id=".service_locator.jJdX_Na.App\Controller\PaymentController::index()"/>
         <argument key="App\Controller\PaymentController:stripePayment" type="service_closure" id=".service_locator.ikQfIPI.App\Controller\PaymentController::stripePayment()"/>
-        <argument key="App\Controller\PaymentController:success" type="service_closure" id=".service_locator.rFA2RGL.App\Controller\PaymentController::success()"/>
-        <argument key="App\Controller\PaymentController:verifyPayment" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\PaymentController::verifyPayment()"/>
+        <argument key="App\Controller\PaymentController:success" type="service_closure" id=".service_locator.J_laEB8.App\Controller\PaymentController::success()"/>
         <argument key="App\Controller\PaymentController:cancel" type="service_closure" id=".service_locator.ikQfIPI.App\Controller\PaymentController::cancel()"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.KAWHxDW.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.vPVKT.B.App\Controller\RegistrationController::verifyUserEmail()"/>
@@ -10087,8 +10078,8 @@
     <service id=".errored..service_locator.jJdX_Na.App\Entity\Commande" class="App\Entity\Commande">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.jJdX_Na&quot;: it needs an instance of &quot;App\Entity\Commande&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
-    <service id=".errored..service_locator.rFA2RGL.App\Entity\Commande" class="App\Entity\Commande">
-      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.rFA2RGL&quot;: it needs an instance of &quot;App\Entity\Commande&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    <service id=".errored..service_locator.J_laEB8.App\Entity\Commande" class="App\Entity\Commande">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.J_laEB8&quot;: it needs an instance of &quot;App\Entity\Commande&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".errored..service_locator.sZsftiP.App\Entity\User" class="App\Entity\User">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.sZsftiP&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
@@ -11293,7 +11284,7 @@
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator..X.wR3k"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.5wG_kQI"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11348,7 +11339,7 @@
     <service id=".service_locator.LnndmLA" alias=".service_locator.CGpsD3F"/>
     <service id=".service_locator.3WpcW23" alias=".service_locator.5Tyk8_y"/>
     <service id=".service_locator.ihhAUx4" alias=".service_locator.jJdX_Na"/>
-    <service id=".service_locator.feHh8bZ" alias=".service_locator.rFA2RGL"/>
+    <service id=".service_locator.htsufMX" alias=".service_locator.J_laEB8"/>
     <service id=".service_locator.113K_6l" alias=".service_locator.KAWHxDW"/>
     <service id=".service_locator.yqU4mSg" alias=".service_locator.vPVKT.B"/>
     <service id=".service_locator.GGNRYUI" alias=".service_locator.PtEirWk"/>
