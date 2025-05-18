@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Categories extends \App\Entity\Categories implements \Doctrine\ORM\Proxy\InternalProxy
 {
-    use \Symfony\Component\VarExporter\LazyGhostTrait {
+     use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as private;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -32,7 +32,7 @@ class Categories extends \App\Entity\Categories implements \Doctrine\ORM\Proxy\I
         'libelle' => [parent::class, 'libelle', null],
         'livres' => [parent::class, 'livres', null],
         'slug' => [parent::class, 'slug', null],
-    ];
+    ];
 
     public function __isInitialized(): bool
     {

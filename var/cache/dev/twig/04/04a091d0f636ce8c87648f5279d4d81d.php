@@ -109,6 +109,6 @@ class __TwigTemplate_ccbf0d4c6c79d27d4d9d32351b3d06c0 extends Template
 <p>
     Cheers!
 </p>
-", "registration/confirmation_email.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\registration\\confirmation_email.html.twig");
+", "registration/confirmation_email.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\registration\\confirmation_email.html.twig");
     }
 }

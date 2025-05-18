@@ -1,0 +1,10 @@
+
+
+{% block body %}
+    <h1>Confirmation de paiement</h1>
+    <p>Bonjour {{ user.nom}},</p>
+    <p>Merci pour votre commande #{{ commande.id }} d'un montant de {{ commande.total}} €.</p>
+    <p>Veuillez cliquer sur le lien ci-dessous pour confirmer votre paiement :</p>
+    <p><a href="{{ verificationUrl }}">Confirmer mon paiement</a></p>
+    <p>Ce lien expirera dans 1 heure.</p>
+{% endblock %}

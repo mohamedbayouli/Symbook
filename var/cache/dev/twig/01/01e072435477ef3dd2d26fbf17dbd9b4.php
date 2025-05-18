@@ -191,6 +191,6 @@ class __TwigTemplate_cdd83eef2e02b47a594ab3e16eb6f9a0 extends Template
         <button class=\"btn btn-primary\">Send password reset email</button>
     {{ form_end(requestForm) }}
 {% endblock %}
-", "reset_password/request.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\reset_password\\request.html.twig");
+", "reset_password/request.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\reset_password\\request.html.twig");
     }
 }

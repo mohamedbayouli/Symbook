@@ -117,6 +117,7 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
             'Symfony\\Bridge\\Doctrine\\' => 24,
             'SymfonyCasts\\Bundle\\VerifyEmail\\' => 32,
             'SymfonyCasts\\Bundle\\ResetPassword\\' => 34,
+            'Stripe\\' => 7,
         ),
         'P' => 
         array (
@@ -492,6 +493,10 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         'SymfonyCasts\\Bundle\\ResetPassword\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src',
+        ),
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
         'Psr\\Log\\' => 
         array (

@@ -160,6 +160,6 @@ class __TwigTemplate_54c6d58847e9757a2f1d0e5efedb56a6 extends Template
         <button class=\"btn btn-primary\">Reset password</button>
     {{ form_end(resetForm) }}
 {% endblock %}
-", "reset_password/reset.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\reset_password\\reset.html.twig");
+", "reset_password/reset.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\reset_password\\reset.html.twig");
     }
 }

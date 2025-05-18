@@ -98,50 +98,68 @@ class __TwigTemplate_6dd3ed1b72923bdd5e417aef15054bba extends Template
 
         // line 6
         yield "    <div class=\"container\">
+        <div class=\"row justify-content-center my-5\">
+            <div class=\"col-md-6\">
+                <form action=\"";
+        // line 9
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("user_livre_all");
+        yield "\" method=\"get\" class=\"search-form\">
+                    <div class=\"input-group\">
+                        <input type=\"text\" name=\"q\" class=\"form-control\" placeholder=\"Rechercher par titre...\" value=\"";
+        // line 11
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 11, $this->source); })()), "request", [], "any", false, false, false, 11), "query", [], "any", false, false, false, 11), "get", ["q"], "method", false, false, false, 11), "html", null, true);
+        yield "\" aria-label=\"Rechercher\">
+                        <button type=\"submit\" class=\"btn btn-primary\">
+                            <i class=\"fas fa-search\"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class=\"row\">
             ";
-        // line 8
+        // line 20
         $context['_parent'] = $context;
         $context['_seq'] = CoreExtension::ensureTraversable($context["livre"]);
         foreach ($context['_seq'] as $context["_key"] => $context["livre"]) {
-            // line 9
+            // line 21
             yield "                <div class=\"col-md-3 mb-3\">
                     <div class=\"card h-100\">
                         <div class=\"card-body\">
                             <img src=\"";
-            // line 12
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "image", [], "any", false, false, false, 12), "html", null, true);
+            // line 24
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "image", [], "any", false, false, false, 24), "html", null, true);
             yield "\" class=\"card-img-top\" alt=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "titre", [], "any", false, false, false, 12), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "titre", [], "any", false, false, false, 24), "html", null, true);
             yield "\">
                             <h5 class=\"card-title\">";
-            // line 13
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "titre", [], "any", false, false, false, 13), "html", null, true);
+            // line 25
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "titre", [], "any", false, false, false, 25), "html", null, true);
             yield "</h5>
                             <p class=\"card-text\">
                                 <strong>Editeur:</strong> ";
-            // line 15
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "editeur", [], "any", false, false, false, 15), "html", null, true);
+            // line 27
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "editeur", [], "any", false, false, false, 27), "html", null, true);
             yield "<br>
                                 <strong>Date Edition:</strong> ";
-            // line 16
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "dateEdition", [], "any", false, false, false, 16), "d/m/Y"), "html", null, true);
+            // line 28
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "dateEdition", [], "any", false, false, false, 28), "d/m/Y"), "html", null, true);
             yield "<br>
                                 <strong>Prix:</strong> ";
-            // line 17
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "prix", [], "any", false, false, false, 17), "html", null, true);
+            // line 29
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "prix", [], "any", false, false, false, 29), "html", null, true);
             yield "<br>
                                 <strong>Catégorie:</strong> ";
-            // line 18
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "cat", [], "any", false, false, false, 18), "libelle", [], "any", false, false, false, 18), "html", null, true);
+            // line 30
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "cat", [], "any", false, false, false, 30), "libelle", [], "any", false, false, false, 30), "html", null, true);
             yield "<br
                                 <strong><a href=\"";
-            // line 19
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("user_livre_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "id", [], "any", false, false, false, 19)]), "html", null, true);
+            // line 31
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("user_livre_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "id", [], "any", false, false, false, 31)]), "html", null, true);
             yield "\" class=\"btn btn-primary\">Voir Detail...</a></strong>
                                 <strong><a href=\"";
-            // line 20
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_add", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "id", [], "any", false, false, false, 20)]), "html", null, true);
+            // line 32
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_add", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["livre"], "id", [], "any", false, false, false, 32)]), "html", null, true);
             yield "\" class=\"btn btn-success\">Ajouter au panier</a></strong>
                             </p>
                         </div>
@@ -152,14 +170,14 @@ class __TwigTemplate_6dd3ed1b72923bdd5e417aef15054bba extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['livre'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 26
+        // line 38
         yield "        </div>
     </div>
     
     <div class=\"navigation\">
         ";
-        // line 30
-        yield $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["livre"]) || array_key_exists("livre", $context) ? $context["livre"] : (function () { throw new RuntimeError('Variable "livre" does not exist.', 30, $this->source); })()));
+        // line 42
+        yield $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["livre"]) || array_key_exists("livre", $context) ? $context["livre"] : (function () { throw new RuntimeError('Variable "livre" does not exist.', 42, $this->source); })()));
         yield "
     </div>
 ";
@@ -193,7 +211,7 @@ class __TwigTemplate_6dd3ed1b72923bdd5e417aef15054bba extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  162 => 30,  156 => 26,  144 => 20,  140 => 19,  136 => 18,  132 => 17,  128 => 16,  124 => 15,  119 => 13,  113 => 12,  108 => 9,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  180 => 42,  174 => 38,  162 => 32,  158 => 31,  154 => 30,  150 => 29,  146 => 28,  142 => 27,  137 => 25,  131 => 24,  126 => 21,  122 => 20,  110 => 11,  105 => 9,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -204,6 +222,18 @@ class __TwigTemplate_6dd3ed1b72923bdd5e417aef15054bba extends Template
 
 {% block body %}
     <div class=\"container\">
+        <div class=\"row justify-content-center my-5\">
+            <div class=\"col-md-6\">
+                <form action=\"{{ path('user_livre_all') }}\" method=\"get\" class=\"search-form\">
+                    <div class=\"input-group\">
+                        <input type=\"text\" name=\"q\" class=\"form-control\" placeholder=\"Rechercher par titre...\" value=\"{{ app.request.query.get('q') }}\" aria-label=\"Rechercher\">
+                        <button type=\"submit\" class=\"btn btn-primary\">
+                            <i class=\"fas fa-search\"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class=\"row\">
             {% for livre in livre %}
                 <div class=\"col-md-3 mb-3\">
@@ -229,6 +259,6 @@ class __TwigTemplate_6dd3ed1b72923bdd5e417aef15054bba extends Template
     <div class=\"navigation\">
         {{ knp_pagination_render(livre) }}
     </div>
-{% endblock %}", "livre/userall.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\livre\\userall.html.twig");
+{% endblock %}", "livre/userall.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\livre\\userall.html.twig");
     }
 }

@@ -119,24 +119,23 @@ class __TwigTemplate_831030f0f48905f5a6d41e4688303437 extends Template
                                                 <input type=\"number\" name=\"quantity\" value=\"";
                     // line 27
                     yield (((CoreExtension::getAttribute($this->env, $this->source, ($context["panier"] ?? null), CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 27), "id", [], "any", false, false, false, 27), [], "array", true, true, false, 27) &&  !(null === CoreExtension::getAttribute($this->env, $this->source, (isset($context["panier"]) || array_key_exists("panier", $context) ? $context["panier"] : (function () { throw new RuntimeError('Variable "panier" does not exist.', 27, $this->source); })()), CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 27), "id", [], "any", false, false, false, 27), [], "array", false, false, false, 27)))) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["panier"]) || array_key_exists("panier", $context) ? $context["panier"] : (function () { throw new RuntimeError('Variable "panier" does not exist.', 27, $this->source); })()), CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 27), "id", [], "any", false, false, false, 27), [], "array", false, false, false, 27), "html", null, true)) : (1));
-                    yield "\" min=\"1\" class=\"form-control quantity-input\" style=\"width: 80px\" data-livre-id=\"";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 27), "id", [], "any", false, false, false, 27), "html", null, true);
-                    yield "\">
+                    yield "\" min=\"1\" class=\"form-control quantity-input\" style=\"width: 80px\" onchange=\"this.form.submit()\">
+                                                <button type=\"submit\" style=\"display:none\"></button>
                                             </form>
                                         </td>
                                         <td class=\"total-price\" data-livre-id=\"";
-                    // line 30
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 30), "id", [], "any", false, false, false, 30), "html", null, true);
+                    // line 31
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 31), "id", [], "any", false, false, false, 31), "html", null, true);
                     yield "\">
                                             ";
-                    // line 31
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 31), "prix", [], "any", false, false, false, 31) * CoreExtension::getAttribute($this->env, $this->source, $context["element"], "quantity", [], "any", false, false, false, 31)), "html", null, true);
+                    // line 32
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 32), "prix", [], "any", false, false, false, 32) * CoreExtension::getAttribute($this->env, $this->source, $context["element"], "quantity", [], "any", false, false, false, 32)), "html", null, true);
                     yield " dt
                                         </td>
                                         <td>
                                             <a href=\"";
-                    // line 34
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_remove", ["id" => CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 34), "id", [], "any", false, false, false, 34)]), "html", null, true);
+                    // line 35
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_remove", ["id" => CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 35), "id", [], "any", false, false, false, 35)]), "html", null, true);
                     yield "\" class=\"btn btn-danger btn-sm\">
                                                 <i class=\"bi bi-trash\"></i> Supprimer
                                             </a>
@@ -144,42 +143,42 @@ class __TwigTemplate_831030f0f48905f5a6d41e4688303437 extends Template
                                     </tr>
                                 ";
                 }
-                // line 40
+                // line 41
                 yield "                            ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['element'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 41
+            // line 42
             yield "                            <tr class=\"table-primary\">
                                 <td colspan=\"3\" class=\"text-end\"><strong>Total général</strong></td>
                                 <td colspan=\"2\">
                                     ";
-            // line 44
-            $context["total"] = 0;
             // line 45
+            $context["total"] = 0;
+            // line 46
             yield "                                    ";
             $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable((isset($context["data"]) || array_key_exists("data", $context) ? $context["data"] : (function () { throw new RuntimeError('Variable "data" does not exist.', 45, $this->source); })()));
+            $context['_seq'] = CoreExtension::ensureTraversable((isset($context["data"]) || array_key_exists("data", $context) ? $context["data"] : (function () { throw new RuntimeError('Variable "data" does not exist.', 46, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["element"]) {
-                // line 46
+                // line 47
                 yield "                                        ";
-                if ((CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 46) != null)) {
-                    // line 47
-                    yield "                                            ";
-                    $context["total"] = ((isset($context["total"]) || array_key_exists("total", $context) ? $context["total"] : (function () { throw new RuntimeError('Variable "total" does not exist.', 47, $this->source); })()) + (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 47), "prix", [], "any", false, false, false, 47) * (((CoreExtension::getAttribute($this->env, $this->source, ($context["panier"] ?? null), CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 47), "id", [], "any", false, false, false, 47), [], "array", true, true, false, 47) &&  !(null === CoreExtension::getAttribute($this->env, $this->source, (isset($context["panier"]) || array_key_exists("panier", $context) ? $context["panier"] : (function () { throw new RuntimeError('Variable "panier" does not exist.', 47, $this->source); })()), CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 47), "id", [], "any", false, false, false, 47), [], "array", false, false, false, 47)))) ? (CoreExtension::getAttribute($this->env, $this->source, (isset($context["panier"]) || array_key_exists("panier", $context) ? $context["panier"] : (function () { throw new RuntimeError('Variable "panier" does not exist.', 47, $this->source); })()), CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 47), "id", [], "any", false, false, false, 47), [], "array", false, false, false, 47)) : (1))));
+                if ((CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 47) != null)) {
                     // line 48
+                    yield "                                            ";
+                    $context["total"] = ((isset($context["total"]) || array_key_exists("total", $context) ? $context["total"] : (function () { throw new RuntimeError('Variable "total" does not exist.', 48, $this->source); })()) + (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 48), "prix", [], "any", false, false, false, 48) * (((CoreExtension::getAttribute($this->env, $this->source, ($context["panier"] ?? null), CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 48), "id", [], "any", false, false, false, 48), [], "array", true, true, false, 48) &&  !(null === CoreExtension::getAttribute($this->env, $this->source, (isset($context["panier"]) || array_key_exists("panier", $context) ? $context["panier"] : (function () { throw new RuntimeError('Variable "panier" does not exist.', 48, $this->source); })()), CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 48), "id", [], "any", false, false, false, 48), [], "array", false, false, false, 48)))) ? (CoreExtension::getAttribute($this->env, $this->source, (isset($context["panier"]) || array_key_exists("panier", $context) ? $context["panier"] : (function () { throw new RuntimeError('Variable "panier" does not exist.', 48, $this->source); })()), CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["element"], "livre", [], "any", false, false, false, 48), "id", [], "any", false, false, false, 48), [], "array", false, false, false, 48)) : (1))));
+                    // line 49
                     yield "                                        ";
                 }
-                // line 49
+                // line 50
                 yield "                                    ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['element'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 50
+            // line 51
             yield "                                    <strong id=\"global-total\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["total"]) || array_key_exists("total", $context) ? $context["total"] : (function () { throw new RuntimeError('Variable "total" does not exist.', 50, $this->source); })()), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["total"]) || array_key_exists("total", $context) ? $context["total"] : (function () { throw new RuntimeError('Variable "total" does not exist.', 51, $this->source); })()), "html", null, true);
             yield " dt</strong>
                                 </td>
                             </tr>
@@ -187,33 +186,33 @@ class __TwigTemplate_831030f0f48905f5a6d41e4688303437 extends Template
                     </table>
                     <div class=\"text-end\">
                         <a href=\"";
-            // line 56
+            // line 57
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_commander");
             yield "\" class=\"btn btn-success btn-lg\">
                             <i class=\"bi bi-check-circle\"></i> Valider la commande
                         </a>
                     </div>
                         <a href=\"";
-            // line 60
+            // line 61
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("user_livre_all");
             yield "\" class=\"btn btn-primary\">
                         <i class=\"bi bi-book\"></i> Voir les livres disponibles
                     </a>
                 ";
         } else {
-            // line 64
+            // line 65
             yield "                    <div class=\"alert alert-info\">
                         Votre panier est vide.
                     </div>
                         <a href=\"";
-            // line 67
+            // line 68
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("user_livre_all");
             yield "\" class=\"btn btn-primary\">
                         <i class=\"bi bi-book\"></i> Voir les livres disponibles
                     </a>
                 ";
         }
-        // line 71
+        // line 72
         yield "            </div>
         </section>
     </main>
@@ -227,7 +226,7 @@ class __TwigTemplate_831030f0f48905f5a6d41e4688303437 extends Template
         yield from [];
     }
 
-    // line 75
+    // line 76
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -240,7 +239,7 @@ class __TwigTemplate_831030f0f48905f5a6d41e4688303437 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 76
+        // line 77
         yield "    <script>
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -333,7 +332,7 @@ class __TwigTemplate_831030f0f48905f5a6d41e4688303437 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  244 => 76,  231 => 75,  217 => 71,  210 => 67,  205 => 64,  198 => 60,  191 => 56,  181 => 50,  175 => 49,  172 => 48,  169 => 47,  166 => 46,  161 => 45,  159 => 44,  154 => 41,  148 => 40,  139 => 34,  133 => 31,  129 => 30,  121 => 27,  117 => 26,  112 => 24,  108 => 23,  105 => 22,  102 => 21,  98 => 20,  85 => 9,  83 => 8,  77 => 4,  64 => 3,  41 => 1,);
+        return array (  243 => 77,  230 => 76,  216 => 72,  209 => 68,  204 => 65,  197 => 61,  190 => 57,  180 => 51,  174 => 50,  171 => 49,  168 => 48,  165 => 47,  160 => 46,  158 => 45,  153 => 42,  147 => 41,  138 => 35,  132 => 32,  128 => 31,  121 => 27,  117 => 26,  112 => 24,  108 => 23,  105 => 22,  102 => 21,  98 => 20,  85 => 9,  83 => 8,  77 => 4,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -364,7 +363,8 @@ class __TwigTemplate_831030f0f48905f5a6d41e4688303437 extends Template
                                         <td class=\"unit-price\">{{ element.livre.prix }} dt</td>
                                         <td>
                                             <form action=\"{{ path('cart_update', {'id': element.livre.id}  ) }}\" method=\"post\" class=\"d-flex\">
-                                                <input type=\"number\" name=\"quantity\" value=\"{{ panier[element.livre.id] ?? 1 }}\" min=\"1\" class=\"form-control quantity-input\" style=\"width: 80px\" data-livre-id=\"{{ element.livre.id }}\">
+                                                <input type=\"number\" name=\"quantity\" value=\"{{ panier[element.livre.id] ?? 1 }}\" min=\"1\" class=\"form-control quantity-input\" style=\"width: 80px\" onchange=\"this.form.submit()\">
+                                                <button type=\"submit\" style=\"display:none\"></button>
                                             </form>
                                         </td>
                                         <td class=\"total-price\" data-livre-id=\"{{ element.livre.id }}\">
@@ -474,6 +474,6 @@ class __TwigTemplate_831030f0f48905f5a6d41e4688303437 extends Template
             }
         });
     </script>
-{% endblock %}", "cart/index.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\cart\\index.html.twig");
+{% endblock %}", "cart/index.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\cart\\index.html.twig");
     }
 }

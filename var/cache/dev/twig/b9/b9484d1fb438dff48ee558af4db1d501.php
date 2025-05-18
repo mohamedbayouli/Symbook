@@ -153,6 +153,6 @@ class __TwigTemplate_928855e6d59811f2489a05d382d98eda extends Template
 
 {{ form_end(f) }}
 {% endblock %}
-", "categories/create.html.twig", "C:\\xampp\\htdocs\\symphonie 2025\\tp3\\tp3\\templates\\categories\\create.html.twig");
+", "categories/create.html.twig", "C:\\Users\\mohamed\\Downloads\\Symbook-main (1)\\Symbook-main\\templates\\categories\\create.html.twig");
     }
 }
